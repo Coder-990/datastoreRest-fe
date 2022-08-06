@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <span>Articles</span>
+</mat-toolbar>
+<p>
+  <button mat-raised-button color="danger">
+    <mat-icon>create</mat-icon>
+  </button>
+</p>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Unit of measure</th>
+    <th scope="col">Describe</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let article of articlesList$|async">
+    <th scope="row">{{article.id}}</th>
+    <th scope="row">{{article.nazivArtikla}}</th>
+    <th scope="row">{{article.cijena}}</th>
+    <th scope="row">{{article.kolicina}}</th>
+    <th scope="row">{{article.jmj}}</th>
+    <th scope="row">{{article.opis}}</th>
+  </tr>
+  </tbody>
+</table>

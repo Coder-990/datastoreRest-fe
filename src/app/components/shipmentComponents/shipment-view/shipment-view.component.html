@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <span>Shipments</span>
+</mat-toolbar>
+<p>
+  <button mat-raised-button color="danger">
+    <mat-icon>create</mat-icon>
+  </button>
+</p>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">No.</th>
+    <th scope="col">Date</th>
+    <th scope="col">Company</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let shipment of shipmentsList$|async">
+    <th scope="row">{{shipment.id}}</th>
+    <th scope="row">{{shipment.datum}}</th>
+    <th scope="row">{{'[' + shipment.izdatnicaFirme.oibFirme + ']-' + shipment.izdatnicaFirme.nazivFirme}}</th>
+  </tr>
+  </tbody>
+</table>
