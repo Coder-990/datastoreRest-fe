@@ -2,7 +2,7 @@ import {Article} from "./article";
 import {Shipment} from "./shipment";
 
 export interface ItemShipment {
-  id:number;
+  id: number;
   stavkaIzdatniceIzdatnica: Shipment;
   stavkaIzdatniceRobe: Article;
   kolicina: number;

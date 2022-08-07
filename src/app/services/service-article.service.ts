@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Article} from "../models/article";
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,16 @@ export class ServiceArticleService {
     return this.http.get<any[]>(this.articlesUrl);
   }
 //get by company identity number
-  getArticleById(id: string): Observable<any> {
+  getArticleById(id: number): Observable<any> {
     return this.http.get<any>(this.articlesUrl + `/${id}`);
   }
 
-  saveArticle(data: any) {
-    return this.http.post(this.articlesUrl, data);
+  saveArticle(article: Article) {
+    return this.http.post(this.articlesUrl, article);
   }
 
-  updateArticle(id: number | string, data: any) {
-    return this.http.put(this.articlesUrl + `/${id}`, data);
+  updateArticle(id: number | string, article: Article) {
+    return this.http.put(this.articlesUrl + `/${id}`, article);
   }
 
   deleteArticle(id: number | string) {

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {ItemShipment} from "../../../models/item-shipment";
+import {ServiceItemShipmentService} from "../../../services/service-item-shipment.service";
 
 @Component({
   selector: 'app-item-shipment-view',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemShipmentViewComponent implements OnInit {
 
-  constructor() { }
+  itemShipmentsList$!: Observable<ItemShipment[]>;
+  constructor(private service: ServiceItemShipmentService) { }
 
   ngOnInit(): void {
+    this.itemShipmentsList$ = this.service.getAllItemShipments();
   }
 
 }

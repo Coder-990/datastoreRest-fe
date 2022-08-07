@@ -16,6 +16,8 @@ const routes: Routes = [
   {path: 'shipments/view', component: ShipmentViewComponent},
   {path: 'itemShipments/view', component: ArticleViewComponent},
   {path: 'itemReceipts/view', component: ArticleViewComponent},
+  {path: 'cancelItemShipments/view', component: ArticleViewComponent},
+  {path: 'cancelItemReceipts/view', component: ArticleViewComponent},
   {path: '**', component: PageNotFoundComponent},
 ];
 

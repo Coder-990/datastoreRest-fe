@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {ItemReceipt} from "../../../models/item-receipt";
+import {ServiceItemReceiptService} from "../../../services/service-item-receipt.service";
 
 @Component({
   selector: 'app-item-receipt-view',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemReceiptViewComponent implements OnInit {
 
-  constructor() { }
+  itemReceiptsList$!: Observable<ItemReceipt[]>;
+  constructor(private service: ServiceItemReceiptService) { }
 
   ngOnInit(): void {
+    this.itemReceiptsList$ = this.service.getAllItemReceipts();
   }
 
 }
