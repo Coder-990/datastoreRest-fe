@@ -1,1 +1,27 @@
-<p>item-shipment-view works!</p>
+<mat-toolbar>
+  <span>Item Shipments</span>
+</mat-toolbar>
+<p>
+  <button mat-raised-button color="danger">
+    <mat-icon>create</mat-icon>
+  </button>
+</p>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">No.</th>
+    <th scope="col">Date</th>
+    <th scope="col">Company</th>
+    <th scope="col">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let itemShipment of itemShipmentsList; index as i">
+    <th scope="row">{{i+1}}</th>
+    <th scope="row">{{'created: '+ itemShipment.stavkaIzdatniceIzdatnica.datum+' '+itemShipment.stavkaIzdatniceIzdatnica.izdatnicaFirme.nazivFirme}}</th>
+    <th scope="row">{{'[' + itemShipment.stavkaIzdatniceRobe.nazivArtikla + ']-' + itemShipment.stavkaIzdatniceRobe.cijena}}</th>
+    <th scope="row">{{'[' + itemShipment.kolicina + ']-' + itemShipment.stavkaIzdatniceRobe.cijena}}</th>
+  </tr>
+  </tbody>
+</table>

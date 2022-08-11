@@ -10,11 +10,14 @@ import {ServiceItemShipmentService} from "../../../services/service-item-shipmen
 })
 export class ItemShipmentViewComponent implements OnInit {
 
-  itemShipmentsList$!: Observable<ItemShipment[]>;
+  itemShipmentsList: ItemShipment[] = [];
   constructor(private service: ServiceItemShipmentService) { }
 
   ngOnInit(): void {
-    this.itemShipmentsList$ = this.service.getAllItemShipments();
+    this.service.getAllItemShipments().subscribe(value => {
+      console.log(value)
+      this.itemShipmentsList = value.filter(val => val.storno)
+    });
   }
 
 }

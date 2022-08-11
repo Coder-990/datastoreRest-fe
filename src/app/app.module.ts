@@ -20,6 +20,7 @@ import {ReceiptViewComponent} from "./components/receiptComponents/receipt-view/
 import { ShipmentViewComponent } from './components/shipmentComponents/shipment-view/shipment-view.component';
 import { ItemReceiptViewComponent } from './components/itemReceiptComponents/item-receipt-view/item-receipt-view.component';
 import { ItemShipmentViewComponent } from './components/itemShipmentComponents/item-shipment-view/item-shipment-view.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -35,18 +36,19 @@ import { ItemShipmentViewComponent } from './components/itemShipmentComponents/i
     ItemReceiptViewComponent,
     ItemShipmentViewComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatTableModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTooltipModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

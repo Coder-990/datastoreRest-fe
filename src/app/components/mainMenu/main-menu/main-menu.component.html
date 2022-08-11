@@ -2,9 +2,9 @@
   <span>Datastore</span>
 </mat-toolbar>
 <mat-toolbar color="primary">
-<!--  <mat-toolbar-row>-->
-<!--    <span>Custom Toolbar</span>-->
-<!--  </mat-toolbar-row>-->
+  <mat-toolbar-row>
+    <span>Custom Toolbar</span>
+  </mat-toolbar-row>
 
 <!--  <mat-toolbar-row>-->
 <!--    <span>Second Line</span>-->
@@ -13,11 +13,13 @@
 <!--  </mat-toolbar-row>-->
   <mat-toolbar-row>
     <button mat-icon-button class="btn mat-raised-button" routerLink="/"
+            matTooltip="Main MEnu"
             aria-label="Example icon-button with companies icon">
       <mat-icon>backspace</mat-icon>
     </button>
     <span class="example-spacer"></span>
     <button mat-icon-button class="btn mat-raised-button" routerLink="/companies/view"
+            matTooltip="Comapnies"
             aria-label="Example icon-button with companies icon">
       <mat-icon>work</mat-icon>
     </button>
@@ -37,7 +39,7 @@
       <mat-icon>unarchive</mat-icon>
     </button>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="btn mat-raised-button" routerLink="/articles/view"
+    <button mat-icon-button class="btn mat-raised-button" routerLink="/itemShipments/view"
             aria-label="Example icon-button with companies icon">
       <mat-icon>import_export</mat-icon>
     </button>

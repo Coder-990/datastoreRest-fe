@@ -13,7 +13,7 @@ export class ServiceItemShipmentService {
   constructor(private http: HttpClient) {
   }
 
-  getAllItemShipments(): Observable<any[]> {
+  getAllItemShipments(): Observable<ItemShipment[]> {
     return this.http.get<any[]>(this.itemShipmentsUrl);
   }
 
@@ -26,15 +26,9 @@ export class ServiceItemShipmentService {
     return this.http.post(this.itemShipmentsUrl, itemShipment);
   }
 
-  saveCancelItemShipment(id: number | string, itemShipment: ItemShipment) {
-    this.getItemShipmentById(itemShipment.id).subscribe(existing => {
-      existing.set(itemShipment.id);
-      existing.set(itemShipment.stavkaIzdatniceIzdatnica.izdatnicaFirme);
-      existing.set(itemShipment.stavkaIzdatniceRobe);
-      existing.set(itemShipment.kolicina);
-      existing.set(true);
-      existing.set(Date.now());
-      return this.http.put(this.itemShipmentsUrl + `/${id}`, itemShipment);
-    })
+  improvedSaveCancelItemShipment(id: number | string, itemShipment: ItemShipment) {
+    itemShipment.storno = true;
+    itemShipment.datumStorno = new Date(Date.now());
+    return this.http.put(this.itemShipmentsUrl + `/${id}`, itemShipment);
   }
 }
