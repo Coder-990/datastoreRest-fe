@@ -13,7 +13,7 @@ export class ServiceItemReceiptService {
   constructor(private http: HttpClient) {
   }
 
-  getAllItemReceipts(): Observable<any[]> {
+  getAllItemReceipts(): Observable<ItemReceipt[]> {
     return this.http.get<any[]>(this.itemReceiptUrl);
   }
 
@@ -27,14 +27,8 @@ export class ServiceItemReceiptService {
   }
 
   saveCancelItemReceipt(id: number | string, itemReceipt: ItemReceipt) {
-    this.getItemReceiptById(itemReceipt.id).subscribe(existing => {
-      existing.set(itemReceipt.id);
-      existing.set(itemReceipt.stavkaPrimkePrimka.primkaFirme);
-      existing.set(itemReceipt.stavkaPrimkeRobe);
-      existing.set(itemReceipt.kolicina);
-      existing.set(true);
-      existing.set(Date.now());
-      return this.http.put(this.itemReceiptUrl + `/${id}`, itemReceipt);
-    })
+    itemReceipt.storno = true;
+    itemReceipt.datumStorno = new Date(Date.now());
+    return this.http.put(this.itemReceiptUrl + `/${id}`, itemReceipt);
   }
 }

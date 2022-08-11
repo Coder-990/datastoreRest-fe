@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
 import {ItemReceipt} from "../../../models/item-receipt";
 import {ServiceItemReceiptService} from "../../../services/service-item-receipt.service";
 
@@ -10,11 +9,21 @@ import {ServiceItemReceiptService} from "../../../services/service-item-receipt.
 })
 export class ItemReceiptViewComponent implements OnInit {
 
-  itemReceiptsList$!: Observable<ItemReceipt[]>;
-  constructor(private service: ServiceItemReceiptService) { }
+  // itemReceiptsList$!: Observable<ItemReceipt[]>;
+  // constructor(private service: ServiceItemReceiptService) { }
+  //
+  // ngOnInit(): void {
+  //   this.itemReceiptsList$ = this.service.getAllItemReceipts();
+  // }
+  itemReceiptList: ItemReceipt[] = [];
+
+  constructor(private service: ServiceItemReceiptService) {
+  }
 
   ngOnInit(): void {
-    this.itemReceiptsList$ = this.service.getAllItemReceipts();
+    this.service.getAllItemReceipts().subscribe(value => {
+      this.itemReceiptList = value.filter(isStorno => isStorno.storno)
+    });
   }
 
 }

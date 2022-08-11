@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ItemShipment} from "../models/item-shipment";
@@ -13,7 +13,7 @@ export class ServiceItemShipmentService {
   constructor(private http: HttpClient) {
   }
 
-  getAllItemShipments(): Observable<ItemShipment[]> {
+  getAllItemShipments(): Observable<any[]> {
     return this.http.get<any[]>(this.itemShipmentsUrl);
   }
 

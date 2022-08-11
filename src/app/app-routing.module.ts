@@ -12,6 +12,12 @@ import {
 import {
   ItemReceiptViewComponent
 } from "./components/itemReceiptComponents/item-receipt-view/item-receipt-view.component";
+import {
+  CancelItemShipmentViewComponent
+} from "./components/CancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
+import {
+  CancelItemReceiptViewComponent
+} from "./components/CancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'datastore/', pathMatch: 'full'},
@@ -22,8 +28,8 @@ const routes: Routes = [
   {path: 'shipments/view', component: ShipmentViewComponent},
   {path: 'itemShipments/view', component: ItemShipmentViewComponent},
   {path: 'itemReceipts/view', component: ItemReceiptViewComponent},
-  {path: 'cancelItemShipments/view', component: ItemShipmentViewComponent},
-  {path: 'cancelItemReceipts/view', component: ItemReceiptViewComponent},
+  {path: 'cancelItemShipments/view', component: CancelItemShipmentViewComponent},
+  {path: 'cancelItemReceipts/view', component: CancelItemReceiptViewComponent},
   {path: '**', component: PageNotFoundComponent},
 ];
 
@@ -31,4 +37,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

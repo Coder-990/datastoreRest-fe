@@ -21,6 +21,8 @@ import { ShipmentViewComponent } from './components/shipmentComponents/shipment-
 import { ItemReceiptViewComponent } from './components/itemReceiptComponents/item-receipt-view/item-receipt-view.component';
 import { ItemShipmentViewComponent } from './components/itemShipmentComponents/item-shipment-view/item-shipment-view.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { CancelItemShipmentViewComponent } from './components/CancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component';
+import { CancelItemReceiptViewComponent } from './components/CancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ReceiptViewComponent,
     ShipmentViewComponent,
     ItemReceiptViewComponent,
-    ItemShipmentViewComponent
+    ItemShipmentViewComponent,
+    CancelItemShipmentViewComponent,
+    CancelItemReceiptViewComponent
   ],
     imports: [
         BrowserModule,

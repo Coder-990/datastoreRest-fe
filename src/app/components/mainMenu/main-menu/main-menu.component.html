@@ -1,11 +1,10 @@
-<mat-toolbar style="background-color: black">
+<mat-toolbar>
   <span>Datastore</span>
 </mat-toolbar>
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Custom Toolbar</span>
-  </mat-toolbar-row>
-
+<!--  <mat-toolbar-row>-->
+<!--    <span>Custom Toolbar</span>-->
+<!--  </mat-toolbar-row>-->
 <!--  <mat-toolbar-row>-->
 <!--    <span>Second Line</span>-->
 <!--    <span class="example-spacer"></span>-->
@@ -39,11 +38,6 @@
       <mat-icon>unarchive</mat-icon>
     </button>
     <span class="example-spacer"></span>
-    <button mat-icon-button class="btn mat-raised-button" routerLink="/itemShipments/view"
-            aria-label="Example icon-button with companies icon">
-      <mat-icon>import_export</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
     <button mat-icon-button class="btn mat-raised-button" routerLink="itemShipments/view"
             aria-label="Example icon-button with companies icon">
       <mat-icon>assignment_return</mat-icon>
@@ -52,6 +46,16 @@
     <button mat-icon-button class="btn mat-raised-button" routerLink="itemReceipts/view"
             aria-label="Example icon-button with companies icon">
       <mat-icon>assignment_returned</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemShipments/view"
+            aria-label="Example icon-button with companies icon">
+      <mat-icon>import_export</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemReceipts/view"
+            aria-label="Example icon-button with companies icon">
+      <mat-icon>import_export</mat-icon>
     </button>
     <span class="example-spacer"></span>
     <button mat-raised-button color="primary" (click)="openDialog()">Logout</button>

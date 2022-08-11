@@ -3,11 +3,9 @@ import {Observable} from "rxjs";
 import {ServiceCompanyService} from "../../../services/service-company.service";
 import {Company} from "../../../models/company";
 
-const NAME = 'Name';
-
-const IDENTITY_NUMBER = 'Identity number';
-
 const ID = 'ID';
+const IDENTITY_NUMBER = 'Identity number';
+const NAME = 'Name';
 
 @Component({
   selector: 'app-company-view',
