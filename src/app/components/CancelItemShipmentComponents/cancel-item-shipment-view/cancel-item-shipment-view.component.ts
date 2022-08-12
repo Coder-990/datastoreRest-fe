@@ -15,7 +15,7 @@ export class CancelItemShipmentViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getAllItemShipments().subscribe(value => {
-      this.cancelItemShipmentsList = value.filter(isStorno =>!isStorno.storno)
+      this.cancelItemShipmentsList = value.filter(isStorno => isStorno.storno)
     });
 
   }

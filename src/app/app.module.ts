@@ -15,14 +15,14 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {PageNotFoundComponent} from './components/pageNotFound/page-not-found/page-not-found.component';
 import {MainMenuComponent} from './components/mainMenu/main-menu/main-menu.component';
-import { ArticleViewComponent } from './components/articleComponents/article-view/article-view.component';
+import {ArticleViewComponent} from './components/articleComponents/article-view/article-view.component';
 import {ReceiptViewComponent} from "./components/receiptComponents/receipt-view/receipt-view.component";
-import { ShipmentViewComponent } from './components/shipmentComponents/shipment-view/shipment-view.component';
-import { ItemReceiptViewComponent } from './components/itemReceiptComponents/item-receipt-view/item-receipt-view.component';
-import { ItemShipmentViewComponent } from './components/itemShipmentComponents/item-shipment-view/item-shipment-view.component';
+import {ShipmentViewComponent} from './components/shipmentComponents/shipment-view/shipment-view.component';
+import {ItemReceiptViewComponent} from './components/itemReceiptComponents/item-receipt-view/item-receipt-view.component';
+import {ItemShipmentViewComponent} from './components/itemShipmentComponents/item-shipment-view/item-shipment-view.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { CancelItemShipmentViewComponent } from './components/CancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component';
-import { CancelItemReceiptViewComponent } from './components/CancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component';
+import {CancelItemShipmentViewComponent} from './components/CancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component';
+import {CancelItemReceiptViewComponent} from './components/CancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component';
 
 @NgModule({
   declarations: [
