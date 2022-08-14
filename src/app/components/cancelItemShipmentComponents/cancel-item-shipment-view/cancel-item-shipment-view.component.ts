@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ItemShipment} from "../../../models/item-shipment";
-import {ServiceItemShipmentService} from "../../../services/service-item-shipment.service";
+import {ServiceItemShipment} from "../../../services/service-item-shipment.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 
@@ -22,11 +22,15 @@ export class CancelItemShipmentViewComponent implements OnInit {
   cancelItemShipmentList: ItemShipment[] = [];
   dataSource: MatTableDataSource<ItemShipment>;
 
-  constructor(private service: ServiceItemShipmentService) {
+  constructor(private service: ServiceItemShipment) {
     this.dataSource = new MatTableDataSource<ItemShipment>(this.cancelItemShipmentList);
   }
 
   ngOnInit(): void {
+   this.ngGetAll();
+  }
+
+  private ngGetAll() {
     this.service.getAllItemShipments().subscribe(itemCancellation => {
       this.cancelItemShipmentList = itemCancellation.filter(isCancelled => isCancelled.storno)
       this.dataSource = new MatTableDataSource<ItemShipment>(this.cancelItemShipmentList);

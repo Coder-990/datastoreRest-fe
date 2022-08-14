@@ -6,7 +6,7 @@ import {ItemShipment} from "../models/item-shipment";
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceItemShipmentService {
+export class ServiceItemShipment {
 
   readonly itemShipmentsUrl = "http://localhost:8080/itemShipments";
 

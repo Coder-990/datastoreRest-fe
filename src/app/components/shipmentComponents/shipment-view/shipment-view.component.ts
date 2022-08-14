@@ -2,12 +2,15 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Shipment} from "../../../models/shipment";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {ServiceShipmentService} from "../../../services/service-shipment.service";
+import {ServiceShipment} from "../../../services/service-shipment.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ShipmentAddComponent} from "../shipment-add/shipment-add.component";
 
 const ID = 'ID';
 const DATE = 'Date';
 const COMPANY = 'Company';
 const EDIT_DELETE = 'Edit/Delete';
+
 @Component({
   selector: 'app-shipment-view',
   templateUrl: './shipment-view.component.html',
@@ -20,11 +23,15 @@ export class ShipmentViewComponent implements OnInit {
   shipmentsList: Shipment[] = [];
   dataSource: MatTableDataSource<Shipment>;
 
-  constructor(private service: ServiceShipmentService) {
+  constructor(private service: ServiceShipment, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Shipment>(this.shipmentsList);
   }
 
   ngOnInit(): void {
+    this.ngGetAll();
+  }
+
+  private ngGetAll() {
     this.service.getAllShipments().subscribe(receipt => {
       this.shipmentsList = receipt;
       this.dataSource = new MatTableDataSource<Shipment>(this.shipmentsList);
@@ -32,4 +39,12 @@ export class ShipmentViewComponent implements OnInit {
     })
   }
 
+  ngAddNewShipment() {
+    const dialogRef = this.dialog.open(ShipmentAddComponent, {
+      width: '20%'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

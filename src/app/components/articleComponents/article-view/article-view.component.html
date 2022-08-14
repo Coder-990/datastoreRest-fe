@@ -1,9 +1,11 @@
 <mat-toolbar>
   <span>Article entities</span>
 </mat-toolbar>
-  <button mat-raised-button color="danger" matTooltip="Add new article">
+<p>
+  <button mat-raised-button color="danger" matTooltip="Add new article" (click)="ngAddNewArticle()">
    Add<mat-icon>create</mat-icon>
   </button>
+</p>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
 

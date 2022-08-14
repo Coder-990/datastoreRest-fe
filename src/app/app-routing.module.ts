@@ -12,12 +12,13 @@ import {
 import {
   ItemReceiptViewComponent
 } from "./components/itemReceiptComponents/item-receipt-view/item-receipt-view.component";
-import {
-  CancelItemShipmentViewComponent
-} from "./components/CancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
+
 import {
   CancelItemReceiptViewComponent
-} from "./components/CancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
+} from "./components/cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
+import {
+  CancelItemShipmentViewComponent
+} from "./components/cancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'datastore/', pathMatch: 'full'},

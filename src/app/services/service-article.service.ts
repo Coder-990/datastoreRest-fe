@@ -6,7 +6,7 @@ import {Article} from "../models/article";
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceArticleService {
+export class ServiceArticle {
 
   readonly articlesUrl = "http://localhost:8080/articles";
 

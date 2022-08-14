@@ -1,8 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Receipt} from "../../../models/receipt";
-import {ServiceReceiptService} from "../../../services/service-receipt.service";
+import {ServiceReceipt} from "../../../services/service-receipt.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {ReceiptAddComponent} from "../receipt-add/receipt-add.component";
+import {MatDialog} from "@angular/material/dialog";
 
 const ID = 'ID';
 const DATE = 'Date';
@@ -21,11 +23,15 @@ export class ReceiptViewComponent implements OnInit {
   receiptsList: Receipt[] = [];
   dataSource: MatTableDataSource<Receipt>;
 
-  constructor(private service: ServiceReceiptService) {
+  constructor(private service: ServiceReceipt, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Receipt>(this.receiptsList);
   }
 
   ngOnInit(): void {
+    this.ngGetAll();
+  }
+
+  ngGetAll() {
     this.service.getAllReceipts().subscribe(receipt => {
       this.receiptsList = receipt;
       this.dataSource = new MatTableDataSource<Receipt>(this.receiptsList);
@@ -33,4 +39,12 @@ export class ReceiptViewComponent implements OnInit {
     })
   }
 
+  ngAddNewReceipt() {
+    const dialogRef = this.dialog.open(ReceiptAddComponent, {
+      width: '20%'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

@@ -1,8 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Article} from "../../../models/article";
-import {ServiceArticleService} from "../../../services/service-article.service";
+import {ServiceArticle} from "../../../services/service-article.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatDialog} from "@angular/material/dialog";
+import {ArticleAddComponent} from "../article-add/article-add.component";
 
 
 const ID = 'ID';
@@ -25,16 +27,28 @@ export class ArticleViewComponent implements OnInit {
   articlesList: Article[] = [];
   dataSource: MatTableDataSource<Article>;
 
-  constructor(private service: ServiceArticleService) {
+  constructor(private service: ServiceArticle, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<Article>(this.articlesList);
   }
 
   ngOnInit(): void {
-    this.service.getAllArticles().subscribe(articles =>{
+    this.ngGetAll();
+  }
+
+  ngGetAll() {
+    this.service.getAllArticles().subscribe(articles => {
       this.articlesList = articles;
       this.dataSource = new MatTableDataSource<Article>(this.articlesList);
       this.dataSource.paginator = this.paginator;
     });
   }
 
+  ngAddNewArticle() {
+    const dialogRef = this.dialog.open(ArticleAddComponent, {
+      width: '20%'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceShipmentService {
+export class ServiceShipment {
 
   readonly shipmentsUrl = "http://localhost:8080/shipments";
 

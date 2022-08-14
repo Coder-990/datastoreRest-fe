@@ -8,8 +8,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
-import {DialogCompanyComponent} from './dialogs/dialog-company/dialog-company.component';
-import {DialogMainMenuComponent} from './dialogs/dialog-main-menu/dialog-main-menu.component';
 import {CompanyViewComponent} from './components/companyComponents/company-view/company-view.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -27,16 +25,30 @@ import {
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {
   CancelItemShipmentViewComponent
-} from './components/CancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component';
+} from "./components/cancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
 import {
   CancelItemReceiptViewComponent
-} from "./components/CancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
+} from "./components/cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
+import { ArticleAddComponent } from './components/articleComponents/article-add/article-add.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import { ReceiptAddComponent } from './components/receiptComponents/receipt-add/receipt-add.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { CompanyAddComponent } from './components/companyComponents/company-add/company-add.component';
+import { ShipmentAddComponent } from './components/shipmentComponents/shipment-add/shipment-add.component';
+import { ItemShipmentAddComponent } from './components/itemShipmentComponents/item-shipment-add/item-shipment-add.component';
+import { ItemReceiptAddComponent } from './components/itemReceiptComponents/item-receipt-add/item-receipt-add.component';
+import { CancelItemReceiptAddComponent } from './components/cancelItemReceiptComponents/cancel-item-receipt-add/cancel-item-receipt-add.component';
+import { CancelItemShipmentAddComponent } from './components/cancelItemShipmentComponents/cancel-item-shipment-add/cancel-item-shipment-add.component';
+import { CancelItemShipmentCancelComponent } from './components/cancelItemShipmentComponents/cancel-item-shipment-cancel/cancel-item-shipment-cancel.component';
+import { CancelItemReceiptCancelComponent } from './components/cancelItemReceiptComponents/cancel-item-receipt-cancel/cancel-item-receipt-cancel.component';
+import {MatTabsModule} from "@angular/material/tabs";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogCompanyComponent,
-    DialogMainMenuComponent,
     CompanyViewComponent,
     PageNotFoundComponent,
     MainMenuComponent,
@@ -47,6 +59,16 @@ import {
     ItemShipmentViewComponent,
     CancelItemShipmentViewComponent,
     CancelItemReceiptViewComponent,
+    ArticleAddComponent,
+    ReceiptAddComponent,
+    CompanyAddComponent,
+    ShipmentAddComponent,
+    ItemShipmentAddComponent,
+    ItemReceiptAddComponent,
+    CancelItemReceiptAddComponent,
+    CancelItemShipmentAddComponent,
+    CancelItemShipmentCancelComponent,
+    CancelItemReceiptCancelComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +81,12 @@ import {
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

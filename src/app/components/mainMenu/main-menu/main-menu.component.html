@@ -1,61 +1,62 @@
 <mat-toolbar>
-  <span>Datastore</span>
+  <button mat-raised-button color="primary" routerLink="/" matTooltip="Main Menu">Main
+    <!--    <mat-icon>backspace</mat-icon>-->
+  </button>
+  <span class="example-spacer"></span>
+  <div>DATASTORE</div>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="primary">Logout</button>
 </mat-toolbar>
 <mat-toolbar color="primary">
-<!--  <mat-toolbar-row>-->
-<!--    <span>Custom Toolbar</span>-->
-<!--  </mat-toolbar-row>-->
-<!--  <mat-toolbar-row>-->
-<!--    <span>Second Line</span>-->
-<!--    <span class="example-spacer"></span>-->
-<!--    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>-->
-<!--  </mat-toolbar-row>-->
   <mat-toolbar-row>
-    <button mat-icon-button class="btn mat-raised-button" routerLink="/"
-            matTooltip="Main Menu">
-      <mat-icon>backspace</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
+    <span>Companies & Articles</span>
+    <!--    <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/companies/view"
             matTooltip="Companies">
       <mat-icon>work</mat-icon>
     </button>
-    <span class="example-spacer"></span>
+    <!--    <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/articles/view"
             matTooltip="Articless">
       <mat-icon>disc_full</mat-icon>
     </button>
-    <span class="example-spacer"></span>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span>Receipts</span>
+    <!--      <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/receipts/view"
             matTooltip="Receipts">
       <mat-icon>archive</mat-icon>
     </button>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="btn mat-raised-button" routerLink="/shipments/view"
-            matTooltip="Shipments">
-      <mat-icon>unarchive</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="btn mat-raised-button" routerLink="itemShipments/view"
-            matTooltip="Item Shipments">
-      <mat-icon>assignment_return</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
+    <!--      <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="itemReceipts/view"
             matTooltip="Item Receipts">
       <mat-icon>assignment_returned</mat-icon>
     </button>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemShipments/view"
-            matTooltip="Cancel Item Shipments">
-      <mat-icon>import_export</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
+    <!--      <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemReceipts/view"
             matTooltip="Cancel Item Receipts">
       <mat-icon>import_export</mat-icon>
     </button>
-    <span class="example-spacer"></span>
-    <button mat-raised-button color="danger" (click)="openDialog()">Logout</button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    <span>Shipments</span>
+    <!--    <span class="example-spacer"></span>-->
+    <button mat-icon-button class="btn mat-raised-button" routerLink="/shipments/view"
+            matTooltip="Shipments">
+      <mat-icon>unarchive</mat-icon>
+    </button>
+    <!--    <span class="example-spacer"></span>-->
+    <button mat-icon-button class="btn mat-raised-button" routerLink="itemShipments/view"
+            matTooltip="Item Shipments">
+      <mat-icon>assignment_return</mat-icon>
+    </button>
+    <!--    <span class="example-spacer"></span>-->
+    <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemShipments/view"
+            matTooltip="Cancel Item Shipments">
+      <mat-icon>import_export</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
