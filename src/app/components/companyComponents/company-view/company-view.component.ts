@@ -3,9 +3,9 @@ import {ServiceCompany} from "../../../services/service-company.service";
 import {Company} from "../../../models/company";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {ReceiptAddComponent} from "../../receiptComponents/receipt-add/receipt-add.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CompanyAddComponent} from "../company-add/company-add.component";
+import {MatSort} from '@angular/material/sort';
 
 const ID = 'ID';
 const IDENTITY_NUMBER = 'Identity number';
@@ -19,6 +19,7 @@ const EDIT_DELETE = 'Edit/Delete';
 })
 export class CompanyViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  @ViewChild(MatSort) sort: MatSort | null = null;
 
   displayedColumns: string[] = [ID, IDENTITY_NUMBER, NAME, EDIT_DELETE];
   companiesList: Company[] = [];
@@ -37,6 +38,7 @@ export class CompanyViewComponent implements OnInit {
       this.companiesList = company;
       this.dataSource = new MatTableDataSource<Company>(this.companiesList);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -48,4 +50,12 @@ export class CompanyViewComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  ngApplyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    let paginator = this.dataSource.paginator;
+    if (paginator) paginator.firstPage();
+  }
+
 }
