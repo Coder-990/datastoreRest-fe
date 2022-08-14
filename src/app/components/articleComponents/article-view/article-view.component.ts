@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Article} from "../../../models/article";
 import {ServiceArticleService} from "../../../services/service-article.service";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
 
 
 const ID = 'ID';
@@ -10,6 +11,7 @@ const PRICE = 'Price';
 const AMOUNT = 'Amount';
 const UOM = 'Uom';
 const DESCRIBE = 'Describe';
+const EDIT_DELETE = 'Edit/Delete';
 
 @Component({
   selector: 'app-article-view',
@@ -17,14 +19,22 @@ const DESCRIBE = 'Describe';
   styleUrls: ['./article-view.component.scss']
 })
 export class ArticleViewComponent implements OnInit {
-  displayedColumns: string[] = [ID, NAME, PRICE, AMOUNT, UOM, DESCRIBE];
-  articlesList$!: Observable<Article[]>;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+
+  displayedColumns: string[] = [ID, NAME, PRICE, AMOUNT, UOM, DESCRIBE, EDIT_DELETE];
+  articlesList: Article[] = [];
+  dataSource: MatTableDataSource<Article>;
 
   constructor(private service: ServiceArticleService) {
+    this.dataSource = new MatTableDataSource<Article>(this.articlesList);
   }
 
   ngOnInit(): void {
-    this.articlesList$ = this.service.getAllArticles();
+    this.service.getAllArticles().subscribe(articles =>{
+      this.articlesList = articles;
+      this.dataSource = new MatTableDataSource<Article>(this.articlesList);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
 }

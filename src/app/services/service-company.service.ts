@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Company} from "../models/company";
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +16,17 @@ export class ServiceCompanyService {
   getAllCompanies(): Observable<any[]> {
     return this.http.get<any[]>(this.companiesUrl);
   }
-//get by company identity number
+
   getCompanyById(id: string): Observable<any> {
     return this.http.get<any>(this.companiesUrl + `/${id}`);
   }
 
-  saveCompany(data: any) {
-    return this.http.post(this.companiesUrl, data);
+  saveCompany(company: Company) {
+    return this.http.post(this.companiesUrl, company);
   }
 
-  updateCompany(id: number | string, data: any) {
-    return this.http.put(this.companiesUrl + `/${id}`, data);
+  updateCompany(id: number | string, company: Company) {
+    return this.http.put(this.companiesUrl + `/${id}`, company);
   }
 
   deleteCompany(id: number | string) {

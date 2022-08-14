@@ -8,7 +8,7 @@ const ID = 'ID';
 const COMPANY = 'Company';
 const ARTICLE = 'Article';
 const AMOUNT = 'Amount';
-const QWE = 'QWE';
+const EDIT_DELETE = 'Edit/Delete';
 
 @Component({
   selector: 'app-item-shipment-view',
@@ -18,7 +18,7 @@ const QWE = 'QWE';
 export class ItemShipmentViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  displayedColumns: string[] = [ID, COMPANY, ARTICLE, AMOUNT, QWE];
+  displayedColumns: string[] = [ID, COMPANY, ARTICLE, AMOUNT, EDIT_DELETE];
   itemShipmentsList: ItemShipment[] = [];
   dataSource: MatTableDataSource<ItemShipment>;
 
@@ -27,17 +27,17 @@ export class ItemShipmentViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getAllItemShipments().subscribe(value => {
-      this.itemShipmentsList = value.filter(isStrnoNot => !isStrnoNot.storno)
+    this.service.getAllItemShipments().subscribe(itemCancellation => {
+      this.itemShipmentsList = itemCancellation.filter(isNotCancelled => !isNotCancelled.storno)
       this.dataSource = new MatTableDataSource<ItemShipment>(this.itemShipmentsList);
       this.dataSource.paginator = this.paginator;
     });
   }
 
-  // ngOnChanges() {
-  //   if (this.itemShipmentsList) {
-  //     this.dataSource = new MatTableDataSource<ItemShipment>(this.itemShipmentsList);
-  //     this.dataSource.paginator = this.paginator;
-  //   }
-  // }
 }
+// ngOnChanges() {
+//   if (this.itemShipmentsList) {
+//     this.dataSource = new MatTableDataSource<ItemShipment>(this.itemShipmentsList);
+//     this.dataSource.paginator = this.paginator;
+//   }
+// }
