@@ -13,4 +13,7 @@ export class ArticleAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngCreateArticle() {
+
+  }
 }

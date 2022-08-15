@@ -5,8 +5,6 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemShipmentAddComponent} from "../item-shipment-add/item-shipment-add.component";
-import {CancelItemShipmentViewComponent} from
-    "../../cancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
 import {
   CancelItemShipmentCancelComponent
 } from "../../cancelItemShipmentComponents/cancel-item-shipment-cancel/cancel-item-shipment-cancel.component";

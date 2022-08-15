@@ -1,40 +1,33 @@
 <mat-toolbar>
   <button mat-raised-button color="primary" routerLink="/" matTooltip="Main Menu">Main
-    <!--    <mat-icon>backspace</mat-icon>-->
   </button>
   <span class="example-spacer"></span>
   <div>DATASTORE</div>
   <span class="example-spacer"></span>
   <button mat-raised-button color="primary">Logout</button>
 </mat-toolbar>
-<mat-toolbar color="primary">
+<mat-toolbar style="margin-left: 8px;" color="primary">
   <mat-toolbar-row>
     <span>Companies & Articles</span>
-    <!--    <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/companies/view"
             matTooltip="Companies">
       <mat-icon>work</mat-icon>
     </button>
-    <!--    <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/articles/view"
             matTooltip="Articless">
       <mat-icon>disc_full</mat-icon>
     </button>
   </mat-toolbar-row>
-
   <mat-toolbar-row>
     <span>Receipts</span>
-    <!--      <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/receipts/view"
             matTooltip="Receipts">
       <mat-icon>archive</mat-icon>
     </button>
-    <!--      <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="itemReceipts/view"
             matTooltip="Item Receipts">
       <mat-icon>assignment_returned</mat-icon>
     </button>
-    <!--      <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemReceipts/view"
             matTooltip="Cancel Item Receipts">
       <mat-icon>import_export</mat-icon>
@@ -43,17 +36,15 @@
 
   <mat-toolbar-row>
     <span>Shipments</span>
-    <!--    <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="/shipments/view"
             matTooltip="Shipments">
       <mat-icon>unarchive</mat-icon>
     </button>
-    <!--    <span class="example-spacer"></span>-->
     <button mat-icon-button class="btn mat-raised-button" routerLink="itemShipments/view"
             matTooltip="Item Shipments">
       <mat-icon>assignment_return</mat-icon>
     </button>
-    <!--    <span class="example-spacer"></span>-->
+
     <button mat-icon-button class="btn mat-raised-button" routerLink="/cancelItemShipments/view"
             matTooltip="Cancel Item Shipments">
       <mat-icon>import_export</mat-icon>

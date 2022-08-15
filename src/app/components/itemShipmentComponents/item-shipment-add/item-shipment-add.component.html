@@ -3,15 +3,18 @@
   <mat-form-field appearance="outline">
     <mat-label>Company</mat-label>
     <mat-select>
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
+      <mat-option *ngFor="let shipmentCompany of shipmentCompaniesList">
+        {{'[ ' + shipmentCompany.izdatnicaFirme.oibFirme + ' ] - ' + shipmentCompany.izdatnicaFirme.nazivFirme +
+      ' - Created: ' + shipmentCompany.datum}}
+      </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Article</mat-label>
     <mat-select>
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
+      <mat-option *ngFor="let article of articleList">
+        {{article.nazivArtikla + ' - [ ' + article.cijena +  ' ] €'}}
+      </mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field appearance="outline">
@@ -19,12 +22,3 @@
     <input matInput type="number" placeholder="0">
   </mat-form-field>
 </div>
-<!--<div mat-calendar-body>-->
-<!--  <mat-form-field appearance="outline">-->
-<!--    <mat-label>Choose a date</mat-label>-->
-<!--    <input matInput [matDatepicker]="picker">-->
-<!--    <mat-hint>MM/DD/YYYY</mat-hint>-->
-<!--    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-<!--    <mat-datepicker #picker></mat-datepicker>-->
-<!--  </mat-form-field>-->
-<!--</div>-->

@@ -2,19 +2,19 @@
   <span>Article entities</span>
 </mat-toolbar>
 <p>
-  <button mat-raised-button color="danger" matTooltip="Add new article" (click)="ngAddNewArticle()">
-    Add
+  <button style="margin-left: 8px;" mat-raised-button color="primary" matTooltip="Add new article" (click)="ngAddNewArticle()">
     <mat-icon>create</mat-icon>
+    Add
   </button>
 </p>
 <p>
-  <mat-form-field appearance="fill">
+  <mat-form-field style="margin-left: 8px;" appearance="fill">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="ngApplyFilter($event)" #input>
   </mat-form-field>
 </p>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table style="margin-left: 8px;" mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="ID">
       <th mat-header-cell *matHeaderCellDef> No.</th>
@@ -47,10 +47,10 @@
     </ng-container>
 
     <ng-container matColumnDef="Edit/Delete">
-      <th mat-header-cell *matHeaderCellDef> Edit/Delete</th>
+      <th mat-header-cell *matHeaderCellDef> Actions</th>
       <td mat-cell *matCellDef>
         <button mat-raised-button color="primary">Edit</button>
-        <button mat-raised-button color="primary">Delete</button>
+        <button style="margin-left: 8px;" mat-raised-button color="primary">Delete</button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -60,6 +60,6 @@
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]">
+  <mat-paginator style="margin-left: 8px;" [pageSizeOptions]="[5, 10, 20]">
   </mat-paginator>
 </div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ServiceCompany} from "../../../services/service-company.service";
+import {Company} from "../../../models/company";
 
 @Component({
   selector: 'app-receipt-add',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceiptAddComponent implements OnInit {
 
-  constructor() { }
+  companiesList: Company[] = [];
 
-  ngOnInit(): void {
+  constructor(private service: ServiceCompany) {
   }
 
+  ngOnInit(): void {
+    this.ngGetAll();
+  }
+
+  ngGetAll() {
+    return this.service.getAllCompanies().subscribe(company => {
+      this.companiesList = company;
+    });
+  }
 }

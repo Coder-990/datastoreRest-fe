@@ -35,6 +35,7 @@ import {MatInputModule} from "@angular/material/input";
 import { ReceiptAddComponent } from './components/receiptComponents/receipt-add/receipt-add.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 import { CompanyAddComponent } from './components/companyComponents/company-add/company-add.component';
 import { ShipmentAddComponent } from './components/shipmentComponents/shipment-add/shipment-add.component';
 import { ItemShipmentAddComponent } from './components/itemShipmentComponents/item-shipment-add/item-shipment-add.component';
@@ -44,6 +45,7 @@ import { CancelItemShipmentAddComponent } from './components/cancelItemShipmentC
 import { CancelItemShipmentCancelComponent } from './components/cancelItemShipmentComponents/cancel-item-shipment-cancel/cancel-item-shipment-cancel.component';
 import { CancelItemReceiptCancelComponent } from './components/cancelItemReceiptComponents/cancel-item-receipt-cancel/cancel-item-receipt-cancel.component';
 import {MatTabsModule} from "@angular/material/tabs";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -86,7 +88,10 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatTabsModule
+    MatNativeDateModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
