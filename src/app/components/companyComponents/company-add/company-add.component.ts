@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServiceCompany} from "../../../services/service-company.service";
+import {Company} from "../../../models/company";
 
 @Component({
   selector: 'app-company-add',
@@ -22,11 +23,18 @@ export class CompanyAddComponent implements OnInit {
   }
 
   ngCreateCompany() {
-    this.companyForm = this.formBuilder.group({
-      companyIdentityNumber: ['', Validators.required],
-      companyName: ['', Validators.required]
-    })
+    // this.companyForm = this.formBuilder.group({
+    //   companyIdentityNumber: ['', Validators.required],
+    //   companyName: ['', Validators.required]
+    // })
     console.log(this.companyForm.value);
-    return this.service.saveCompany(this.companyForm);
+    const firmaDto: Company = {
+      id: null,
+      nazivFirme: this.companyForm.get("companyName")?.value,
+      oibFirme: this.companyForm.get("companyIdentityNumber")?.value
+    }
+    this.service.saveCompany(firmaDto).subscribe(result => {
+      console.log("Save success");
+    });
   }
 }

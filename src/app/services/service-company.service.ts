@@ -21,7 +21,7 @@ export class ServiceCompany {
   }
 
     saveCompany(company: any) {
-    return this.http.post(this.companiesUrl, company);
+    return this.http.post<any>(this.companiesUrl,  company);
   }
 
   updateCompany(id: number | string, company: any) {
