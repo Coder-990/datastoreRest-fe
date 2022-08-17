@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Article} from "../../../models/article";
 import {ServiceArticle} from "../../../services/service-article.service";
-import {Receipt} from "../../../models/receipt";
+import {Receipt, ReceiptDTO} from "../../../models/receipt";
 import {ServiceReceipt} from "../../../services/service-receipt.service";
 
 @Component({
@@ -11,7 +11,7 @@ import {ServiceReceipt} from "../../../services/service-receipt.service";
 })
 export class ItemReceiptAddComponent implements OnInit {
 
-  receiptCompanyList: Receipt[] = [];
+  receiptCompanyList: ReceiptDTO[] = [];
   articleList: Article[] = [];
 
   constructor(private receiptService: ServiceReceipt, private articleService: ServiceArticle) { }

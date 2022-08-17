@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Receipt} from "../../../models/receipt";
+import {ReceiptDTO} from "../../../models/receipt";
 import {ServiceReceipt} from "../../../services/service-receipt.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
@@ -20,11 +20,11 @@ export class ReceiptViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   displayedColumns: string[] = [ID, DATE, COMPANY, EDIT_DELETE];
-  receiptsList: Receipt[] = [];
-  dataSource: MatTableDataSource<Receipt>;
+  receiptsList: ReceiptDTO[] = [];
+  dataSource: MatTableDataSource<ReceiptDTO>;
 
   constructor(private service: ServiceReceipt, public dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<Receipt>(this.receiptsList);
+    this.dataSource = new MatTableDataSource<ReceiptDTO>(this.receiptsList);
   }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class ReceiptViewComponent implements OnInit {
   ngGetAll() {
     this.service.getAllReceipts().subscribe(receipt => {
       this.receiptsList = receipt;
-      this.dataSource = new MatTableDataSource<Receipt>(this.receiptsList);
+      this.dataSource = new MatTableDataSource<ReceiptDTO>(this.receiptsList);
       this.dataSource.paginator = this.paginator;
     })
   }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {ReceiptDTO} from "../models/receipt";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ServiceReceipt {
   constructor(private http: HttpClient) {
   }
 
-  getAllReceipts(): Observable<any[]> {
+  getAllReceipts(): Observable<ReceiptDTO[]> {
     return this.http.get<any[]>(this.receiptsUrl);
   }
 //get by company identity number
@@ -20,8 +21,8 @@ export class ServiceReceipt {
     return this.http.get<any>(this.receiptsUrl + `/${id}`);
   }
 
-  saveReceipt(data: any) {
-    return this.http.post(this.receiptsUrl, data);
+  saveReceipt(receipt: ReceiptDTO) {
+    return this.http.post(this.receiptsUrl, receipt);
   }
 
   deleteReceipt(id: number | string) {
