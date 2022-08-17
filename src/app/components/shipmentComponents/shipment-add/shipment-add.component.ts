@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Company} from "../../../models/company";
+import {CompanyDTO} from "../../../models/company";
 import {ServiceCompany} from "../../../services/service-company.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {ServiceCompany} from "../../../services/service-company.service";
 })
 export class ShipmentAddComponent implements OnInit {
 
-  companiesList: Company[] = [];
+  companiesList: CompanyDTO[] = [];
 
   constructor(private service: ServiceCompany) {
   }

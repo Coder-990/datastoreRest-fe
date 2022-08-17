@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ServiceCompany} from "../../../services/service-company.service";
-import {Company} from "../../../models/company";
+import {CompanyDTO} from "../../../models/company";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
@@ -22,11 +22,11 @@ export class CompanyViewComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort | null = null;
 
   displayedColumns: string[] = [ID, IDENTITY_NUMBER, NAME, EDIT_DELETE];
-  companiesList: Company[] = [];
-  dataSource: MatTableDataSource<Company>;
+  companiesList: CompanyDTO[] = [];
+  dataSource: MatTableDataSource<CompanyDTO>;
 
   constructor(private service: ServiceCompany, public dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<Company>(this.companiesList);
+    this.dataSource = new MatTableDataSource<CompanyDTO>(this.companiesList);
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class CompanyViewComponent implements OnInit {
   ngGetAll() {
     this.service.getAllCompanies().subscribe(company => {
       this.companiesList = company;
-      this.dataSource = new MatTableDataSource<Company>(this.companiesList);
+      this.dataSource = new MatTableDataSource<CompanyDTO>(this.companiesList);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

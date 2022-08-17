@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {CompanyDTO} from "../models/company";
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,15 @@ export class ServiceCompany {
   constructor(private http: HttpClient) {
   }
 
-  getAllCompanies(): Observable<any[]> {
-    return this.http.get<any[]>(this.companiesUrl);
+  getAllCompanies(): Observable<CompanyDTO[]> {
+    return this.http.get<CompanyDTO[]>(this.companiesUrl);
   }
 
   getCompanyById(id: string): Observable<any> {
     return this.http.get<any>(this.companiesUrl + `/${id}`);
   }
 
-    saveCompany(company: any) {
+    saveCompany(company: CompanyDTO) {
     return this.http.post<any>(this.companiesUrl,  company);
   }
 

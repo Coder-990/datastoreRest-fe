@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServiceCompany} from "../../../services/service-company.service";
-import {Company} from "../../../models/company";
+import {CompanyDTO} from "../../../models/company";
 
 @Component({
   selector: 'app-company-add',
@@ -10,12 +10,17 @@ import {Company} from "../../../models/company";
 })
 export class CompanyAddComponent implements OnInit {
 
-  companyForm !: FormGroup;
+  companyForm!: FormGroup;
+  firmaDto!: CompanyDTO
 
   constructor(private formBuilder: FormBuilder, private service: ServiceCompany) {
   }
 
   ngOnInit(): void {
+    this.ngGenerateCompanyForm();
+  }
+
+  ngGenerateCompanyForm() {
     this.companyForm = this.formBuilder.group({
       companyIdentityNumber: ['', Validators.required],
       companyName: ['', Validators.required]
@@ -23,18 +28,14 @@ export class CompanyAddComponent implements OnInit {
   }
 
   ngCreateCompany() {
-    // this.companyForm = this.formBuilder.group({
-    //   companyIdentityNumber: ['', Validators.required],
-    //   companyName: ['', Validators.required]
-    // })
-    console.log(this.companyForm.value);
-    const firmaDto: Company = {
+    this.firmaDto = {
       id: null,
-      nazivFirme: this.companyForm.get("companyName")?.value,
-      oibFirme: this.companyForm.get("companyIdentityNumber")?.value
+      oibFirme: this.companyForm.get("companyIdentityNumber")?.value,
+      nazivFirme: this.companyForm.get("companyName")?.value
     }
-    this.service.saveCompany(firmaDto).subscribe(result => {
-      console.log("Save success");
+    this.service.saveCompany(this.firmaDto).subscribe(company => {
+      this.firmaDto = company
+      console.log("Save success ", this.firmaDto);
     });
   }
 }

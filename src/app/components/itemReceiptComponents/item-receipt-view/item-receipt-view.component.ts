@@ -5,8 +5,6 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemReceiptAddComponent} from "../item-receipt-add/item-receipt-add.component";
-import {CancelItemReceiptViewComponent} from
-    "../../cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
 import {
   CancelItemReceiptCancelComponent
 } from "../../cancelItemReceiptComponents/cancel-item-receipt-cancel/cancel-item-receipt-cancel.component";
