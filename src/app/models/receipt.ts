@@ -2,7 +2,7 @@ import {Company, CompanyDTO} from "./company";
 
 export class ReceiptDTO {
   id: number | null;
-  datum: string;
+  datum: string | null;
   primkaFirme: CompanyDTO;
 
   constructor(formValue: Receipt) {

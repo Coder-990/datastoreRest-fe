@@ -46,6 +46,7 @@ import { CancelItemShipmentCancelComponent } from './components/cancelItemShipme
 import { CancelItemReceiptCancelComponent } from './components/cancelItemReceiptComponents/cancel-item-receipt-cancel/cancel-item-receipt-cancel.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DatePipe} from "@angular/common";
 
 
 @NgModule({
@@ -93,7 +94,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
