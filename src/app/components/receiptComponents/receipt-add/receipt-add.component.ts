@@ -17,12 +17,10 @@ export class ReceiptAddComponent implements OnInit {
   receiptForm!: FormGroup
   receiptDTO!: ReceiptDTO
 
-
   constructor(private formBuilder: FormBuilder,
               private companyService: ServiceCompany,
               private receiptService: ServiceReceipt,
-              public datepipe: DatePipe) {
-  }
+              public datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.ngGetAll();
@@ -45,7 +43,7 @@ export class ReceiptAddComponent implements OnInit {
   ngCreateReceipt() {
     this.receiptDTO = {
       id: null,
-      datum: this.datepipe.transform(new Date(this.receiptForm.get("date")?.value), 'yyyy-MM-dd'),
+      datum: this.datePipe.transform(new Date(this.receiptForm.get("date")?.value), 'yyyy-MM-dd'),
       primkaFirme: {
         id: this.receiptForm.get("company")?.value.id,
         oibFirme: this.receiptForm.get("company")?.value.oibFirme,

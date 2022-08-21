@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Article} from "../../../models/article";
+import {ArticleDTO} from "../../../models/article";
 import {ServiceArticle} from "../../../services/service-article.service";
-import {Shipment} from "../../../models/shipment";
+import {ShipmentDTO} from "../../../models/shipment";
 import {ServiceShipment} from "../../../services/service-shipment.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ItemShipmentDTO} from "../../../models/item-shipment";
+import {ServiceItemShipment} from "../../../services/service-item-shipment.service";
 
 @Component({
   selector: 'app-item-shipment-add',
@@ -11,15 +14,19 @@ import {ServiceShipment} from "../../../services/service-shipment.service";
 })
 export class ItemShipmentAddComponent implements OnInit {
 
-  shipmentCompaniesList: Shipment[] = [];
-  articleList: Article[] = [];
+  shipmentCompaniesList: ShipmentDTO[] = [];
+  articleList: ArticleDTO[] = [];
+  itemShipmentForm!: FormGroup
+  itemShipmentDTO!: ItemShipmentDTO
 
-  constructor(private shipmentCompanyService: ServiceShipment, private articleService: ServiceArticle) {
+  constructor(private formBuilder: FormBuilder, private shipmentCompanyService: ServiceShipment,
+              private articleService: ServiceArticle, private itemShipmentService: ServiceItemShipment) {
   }
 
   ngOnInit(): void {
     this.ngGetAllCompanies();
     this.ngGetAllArticles();
+    this.ngGenerateShipmentForm()
   }
 
   ngGetAllCompanies() {
@@ -31,6 +38,52 @@ export class ItemShipmentAddComponent implements OnInit {
   ngGetAllArticles() {
     return this.articleService.getAllArticles().subscribe(article => {
       this.articleList = article;
+    });
+  }
+
+  ngGenerateShipmentForm() {
+    this.itemShipmentForm = this.formBuilder.group({
+      shipmentCompany: ['', Validators.required],
+      shipmentArticle: ['', Validators.required],
+      shipmentAmount: ['', Validators.required]
+    })
+  }
+
+  ngGetArticleDTO() {
+    return {
+      id: this.itemShipmentForm.get("shipmentArticle")?.value.id,
+      nazivArtikla: this.itemShipmentForm.get("shipmentArticle")?.value.nazivArtikla,
+      cijena: this.itemShipmentForm.get("shipmentArticle")?.value.cijena,
+      kolicina: this.itemShipmentForm.get("shipmentArticle")?.value.kolicina,
+      jmj: this.itemShipmentForm.get("shipmentArticle")?.value.jmj,
+      opis: this.itemShipmentForm.get("shipmentArticle")?.value.opis,
+    }
+  }
+
+  ngGetShipmentDTO() {
+    return {
+      id: this.itemShipmentForm.get("shipmentCompany")?.value.id,
+      datum: this.itemShipmentForm.get("shipmentCompany")?.value.datum,
+      izdatnicaFirme: this.itemShipmentForm.get("shipmentCompany")?.value.izdatnicaFirme,
+    }
+  }
+
+  ngBuildItemShipmentDTO() {
+    return {
+      id: null,
+      stavkaIzdatniceIzdatnica: this.ngGetShipmentDTO(),
+      stavkaIzdatniceRobe: this.ngGetArticleDTO(),
+      kolicina: this.itemShipmentForm.get("shipmentAmount")?.value.kolicina,
+      storno: false,
+      datumStorno: null,
+    }
+  }
+
+  ngSaveItemShipment() {
+    this.itemShipmentDTO = this.ngBuildItemShipmentDTO()
+    this.itemShipmentService.saveItemShipment(this.itemShipmentDTO).subscribe(itemShipmentDTO => {
+      if (itemShipmentDTO instanceof ItemShipmentDTO) this.itemShipmentDTO = itemShipmentDTO
+      console.log("Save success ", this.itemShipmentDTO);
     });
   }
 

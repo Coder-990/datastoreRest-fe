@@ -27,15 +27,19 @@ export class CompanyAddComponent implements OnInit {
     })
   }
 
-  ngCreateCompany() {
-    this.firmaDto = {
-      id: null,
-      oibFirme: this.companyForm.get("companyIdentityNumber")?.value,
-      nazivFirme: this.companyForm.get("companyName")?.value
-    }
+  ngSaveCompany() {
+    this.firmaDto = this.ngBuildCompanyDTO()
     this.service.saveCompany(this.firmaDto).subscribe(company => {
       this.firmaDto = company
       console.log("Save success ", this.firmaDto);
     });
+  }
+
+  public ngBuildCompanyDTO() {
+    return {
+      id: null,
+      oibFirme: this.companyForm.get("companyIdentityNumber")?.value,
+      nazivFirme: this.companyForm.get("companyName")?.value
+    }
   }
 }

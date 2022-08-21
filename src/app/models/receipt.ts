@@ -7,10 +7,11 @@ export class ReceiptDTO {
 
   constructor(formValue: Receipt) {
     this.id = formValue.id;
-    this.datum= formValue.datum.toISOString();
-    this.primkaFirme= formValue.primkaFirme;
+    this.datum = formValue.datum.toISOString();
+    this.primkaFirme = formValue.primkaFirme;
   }
 }
+
 export interface Receipt {
   id: number;
   datum: Date;

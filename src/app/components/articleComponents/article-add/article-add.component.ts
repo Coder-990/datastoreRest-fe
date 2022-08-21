@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {ArticleDTO} from "../../../models/article";
+import {ServiceArticle} from "../../../services/service-article.service";
 
 @Component({
   selector: 'app-article-add',
@@ -7,13 +10,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ArticleAddComponent implements OnInit {
 
-  constructor() {
+  articleForm!: FormGroup;
+  articleDto!: ArticleDTO
+
+  constructor(private formBuilder: FormBuilder, private service: ServiceArticle) {
   }
 
   ngOnInit(): void {
+  this.ngGenerateArticleForm();
   }
 
   ngCreateArticle() {
 
+  }
+
+  private ngGenerateArticleForm() {
+    this.articleForm = this.formBuilder.group({
+      articleName: ['',]
+    })
   }
 }

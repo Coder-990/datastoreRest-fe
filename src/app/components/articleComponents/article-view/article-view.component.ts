@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Article} from "../../../models/article";
+import {ArticleDTO} from "../../../models/article";
 import {ServiceArticle} from "../../../services/service-article.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
@@ -25,11 +25,11 @@ export class ArticleViewComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort | null = null;
 
   displayedColumns: string[] = [ID, NAME, PRICE, AMOUNT, UOM, DESCRIBE, EDIT_DELETE];
-  articlesList: Article[] = [];
-  dataSource: MatTableDataSource<Article>;
+  articlesList: ArticleDTO[] = [];
+  dataSource: MatTableDataSource<ArticleDTO>;
 
   constructor(private service: ServiceArticle, public dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<Article>(this.articlesList);
+    this.dataSource = new MatTableDataSource<ArticleDTO>(this.articlesList);
   }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class ArticleViewComponent implements OnInit {
   ngGetAll() {
     this.service.getAllArticles().subscribe(articles => {
       this.articlesList = articles;
-      this.dataSource = new MatTableDataSource<Article>(this.articlesList);
+      this.dataSource = new MatTableDataSource<ArticleDTO>(this.articlesList);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ItemShipment} from "../models/item-shipment";
+import {ItemShipment, ItemShipmentDTO} from "../models/item-shipment";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ServiceItemShipment {
     return this.http.get<any>(this.itemShipmentsUrl + `/${id}`);
   }
 
-  saveItemShipment(itemShipment: ItemShipment) {
+  saveItemShipment(itemShipment: ItemShipmentDTO) {
     return this.http.post(this.itemShipmentsUrl, itemShipment);
   }
 
