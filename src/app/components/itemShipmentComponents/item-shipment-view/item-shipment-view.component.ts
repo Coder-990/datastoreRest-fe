@@ -1,13 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ItemShipment} from "../../../models/item-shipment";
+import {ItemShipmentDTO} from "../../../models/item-shipment";
 import {ServiceItemShipment} from "../../../services/service-item-shipment.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemShipmentAddComponent} from "../item-shipment-add/item-shipment-add.component";
-import {
-  CancelItemShipmentCancelComponent
-} from "../../cancelItemShipmentComponents/cancel-item-shipment-cancel/cancel-item-shipment-cancel.component";
+import {ItemShipmentCancelComponent} from "../item-shipment-cancel/item-shipment-cancel.component";
 
 const ID = 'ID';
 const COMPANY = 'Company';
@@ -24,21 +22,21 @@ export class ItemShipmentViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   displayedColumns: string[] = [ID, COMPANY, ARTICLE, AMOUNT, CANCELLATION];
-  itemShipmentsList: ItemShipment[] = [];
-  dataSource: MatTableDataSource<ItemShipment>;
+  itemShipmentsList: ItemShipmentDTO[] = [];
+  dataSource: MatTableDataSource<ItemShipmentDTO>;
 
-  constructor(private service: ServiceItemShipment, private dialog:MatDialog) {
-    this.dataSource = new MatTableDataSource<ItemShipment>(this.itemShipmentsList);
+  constructor(private service: ServiceItemShipment, private dialog: MatDialog) {
+    this.dataSource = new MatTableDataSource<ItemShipmentDTO>(this.itemShipmentsList);
   }
 
   ngOnInit(): void {
-   this.ngGetAll();
+    this.ngGetAll();
   }
 
   private ngGetAll() {
     this.service.getAllItemShipments().subscribe(itemCancellation => {
       this.itemShipmentsList = itemCancellation.filter(isNotCancelled => !isNotCancelled.storno);
-      this.dataSource = new MatTableDataSource<ItemShipment>(this.itemShipmentsList);
+      this.dataSource = new MatTableDataSource<ItemShipmentDTO>(this.itemShipmentsList);
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -52,9 +50,10 @@ export class ItemShipmentViewComponent implements OnInit {
     });
   }
 
-  ngCancelItemShipment() {
-    const dialogRef = this.dialog.open(CancelItemShipmentCancelComponent, {
-      width: '20%'
+  ngCancelItemShipment(row: any) {
+    const dialogRef = this.dialog.open(ItemShipmentCancelComponent, {
+      width: '30%',
+      data: row
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

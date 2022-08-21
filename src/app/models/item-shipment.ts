@@ -2,10 +2,9 @@ import {Article, ArticleDTO} from "./article";
 import {ShipmentDTO} from "./shipment";
 
 export class ItemShipmentDTO{
-
   id: number | null;
-  stavkaIzdatniceIzdatnica: ShipmentDTO;
-  stavkaIzdatniceRobe: ArticleDTO;
+  stavkaIzdatniceIzdatnica: ShipmentDTO | null;
+  stavkaIzdatniceRobe: ArticleDTO | null;
   kolicina: number | null;
   storno: boolean;
   datumStorno: Date | null;

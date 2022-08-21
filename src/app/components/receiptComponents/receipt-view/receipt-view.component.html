@@ -11,26 +11,25 @@
   <table mat-table [dataSource]="dataSource">
 
     <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <th mat-header-cell *matHeaderCellDef> No.</th>
       <td mat-cell *matCellDef="let receipt"> {{receipt.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Date">
-      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <th mat-header-cell *matHeaderCellDef> Date</th>
       <td mat-cell *matCellDef="let receipt"> {{receipt.datum}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Company">
-      <th mat-header-cell *matHeaderCellDef> Company </th>
-      <td mat-cell *matCellDef="let receipt"> {{'[ ' +
-      receipt.primkaFirme.oibFirme + ' ] - ' +
-      receipt.primkaFirme.nazivFirme}} </td>
+      <th mat-header-cell *matHeaderCellDef> Company</th>
+      <td mat-cell *matCellDef="let receipt"> {{
+        receipt.primkaFirme.oibFirme + '-' +
+        receipt.primkaFirme.nazivFirme}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Edit/Delete">
-      <th mat-header-cell *matHeaderCellDef> Edit/Delete</th>
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
       <td mat-cell *matCellDef>
-        <button mat-raised-button color="primary">Edit</button>
         <button mat-raised-button color="primary">Delete</button>
       </td>
     </ng-container>

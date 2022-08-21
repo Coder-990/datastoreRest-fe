@@ -17,15 +17,15 @@ export class ServiceCompany {
     return this.http.get<CompanyDTO[]>(this.companiesUrl);
   }
 
-  getCompanyById(id: string): Observable<any> {
+  getCompanyById(id: number | null): Observable<any> {
     return this.http.get<any>(this.companiesUrl + `/${id}`);
   }
 
-    saveCompany(company: CompanyDTO) {
-    return this.http.post<any>(this.companiesUrl,  company);
+  saveCompany(company: CompanyDTO) {
+    return this.http.post<any>(this.companiesUrl, company);
   }
 
-  updateCompany(id: number | string, company: any) {
+  updateCompany(id: number | null, company: CompanyDTO) {
     return this.http.put(this.companiesUrl + `/${id}`, company);
   }
 

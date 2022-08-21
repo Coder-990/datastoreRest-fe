@@ -1,26 +1,26 @@
 export class ArticleDTO {
   id: number | null;
   nazivArtikla: string | null;
-  kolicina: number | null;
   cijena: number | null;
-  opis: string | null;
+  kolicina: number | null;
   jmj: string | null;
+  opis: string | null;
 
   constructor(formValue: Article) {
     this.id = formValue.id;
     this.nazivArtikla = formValue.nazivArtikla;
-    this.kolicina = formValue.kolicina;
     this.cijena = formValue.cijena;
-    this.opis = formValue.opis;
+    this.kolicina = formValue.kolicina;
     this.jmj = formValue.jmj;
+    this.opis = formValue.opis;
   }
 }
 
 export interface Article {
   id: number;
   nazivArtikla: string;
-  kolicina: number;
   cijena: number;
-  opis: string;
+  kolicina: number;
   jmj: string;
+  opis: string;
 }

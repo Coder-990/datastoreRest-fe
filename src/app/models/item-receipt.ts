@@ -3,11 +3,11 @@ import {ReceiptDTO} from "./receipt";
 
 export class ItemReceiptDTO {
   id: number | null;
-  stavkaPrimkePrimka: ReceiptDTO;
-  stavkaPrimkeRobe: ArticleDTO;
+  stavkaPrimkePrimka: ReceiptDTO | null;
+  stavkaPrimkeRobe: ArticleDTO | null;
   kolicina: number | null;
   storno: boolean;
-  datumStorno: Date;
+  datumStorno: Date | null;
 
   constructor(formValue: ItemReceipt) {
     this.id = formValue.id;

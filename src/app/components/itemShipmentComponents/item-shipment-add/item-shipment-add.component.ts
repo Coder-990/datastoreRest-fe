@@ -18,6 +18,7 @@ export class ItemShipmentAddComponent implements OnInit {
   articleList: ArticleDTO[] = [];
   itemShipmentForm!: FormGroup
   itemShipmentDTO!: ItemShipmentDTO
+  actionButton: string = "Save";
 
   constructor(private formBuilder: FormBuilder, private shipmentCompanyService: ServiceShipment,
               private articleService: ServiceArticle, private itemShipmentService: ServiceItemShipment) {
@@ -49,6 +50,14 @@ export class ItemShipmentAddComponent implements OnInit {
     })
   }
 
+  ngGetShipmentDTO() {
+    return {
+      id: this.itemShipmentForm.get("shipmentCompany")?.value.id,
+      datum: this.itemShipmentForm.get("shipmentCompany")?.value.datum,
+      izdatnicaFirme: this.itemShipmentForm.get("shipmentCompany")?.value.izdatnicaFirme,
+    }
+  }
+
   ngGetArticleDTO() {
     return {
       id: this.itemShipmentForm.get("shipmentArticle")?.value.id,
@@ -60,20 +69,12 @@ export class ItemShipmentAddComponent implements OnInit {
     }
   }
 
-  ngGetShipmentDTO() {
-    return {
-      id: this.itemShipmentForm.get("shipmentCompany")?.value.id,
-      datum: this.itemShipmentForm.get("shipmentCompany")?.value.datum,
-      izdatnicaFirme: this.itemShipmentForm.get("shipmentCompany")?.value.izdatnicaFirme,
-    }
-  }
-
   ngBuildItemShipmentDTO() {
     return {
       id: null,
       stavkaIzdatniceIzdatnica: this.ngGetShipmentDTO(),
       stavkaIzdatniceRobe: this.ngGetArticleDTO(),
-      kolicina: this.itemShipmentForm.get("shipmentAmount")?.value.kolicina,
+      kolicina: this.itemShipmentForm.get("shipmentAmount")?.value,
       storno: false,
       datumStorno: null,
     }
@@ -82,7 +83,7 @@ export class ItemShipmentAddComponent implements OnInit {
   ngSaveItemShipment() {
     this.itemShipmentDTO = this.ngBuildItemShipmentDTO()
     this.itemShipmentService.saveItemShipment(this.itemShipmentDTO).subscribe(itemShipmentDTO => {
-      if (itemShipmentDTO instanceof ItemShipmentDTO) this.itemShipmentDTO = itemShipmentDTO
+      this.itemShipmentDTO = <ItemShipmentDTO>itemShipmentDTO
       console.log("Save success ", this.itemShipmentDTO);
     });
   }

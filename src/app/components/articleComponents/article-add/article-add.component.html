@@ -1,28 +1,30 @@
 <h1 mat-dialog-title>Add Article</h1>
 <div mat-dialog-content>
-  <mat-form-field appearance="outline">
-    <mat-label>Name</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="outline" floatLabel="always">
-    <mat-label>Price</mat-label>
-    <input matInput type="number" placeholder="0">
-    <span matPrefix>€&nbsp;</span>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Amount</mat-label>
-    <input matInput type="number" placeholder="0">
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Unit of measure</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Describe</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
+  <form [formGroup]="articleForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="articleName">
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="articlePrice" type="number" placeholder="0">
+      <span matPrefix>€&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="articleAmount" type="number" placeholder="0">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Unit of measure</mat-label>
+      <input matInput formControlName="unitOfMeasure">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Describe</mat-label>
+      <textarea matInput formControlName="describe"></textarea>
+    </mat-form-field>
+  </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="ngCreateArticle()">Save</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="ngSaveArticle()">Save</button>
 </div>

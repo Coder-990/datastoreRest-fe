@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
-import {ItemReceipt} from "../../../models/item-receipt";
+import {ItemReceiptDTO} from "../../../models/item-receipt";
 import {ServiceItemReceipt} from "../../../services/service-item-receipt.service";
 
 const ID = 'ID';
@@ -19,11 +19,11 @@ export class CancelItemReceiptViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   displayedColumns: string[] = [ID, COMPANY, ARTICLE, AMOUNT, CANCELLATION_DATE];
-  cancelItemReceiptsList: ItemReceipt[] = [];
-  dataSource: MatTableDataSource<ItemReceipt>;
+  cancelItemReceiptsList: ItemReceiptDTO[] = [];
+  dataSource: MatTableDataSource<ItemReceiptDTO>;
 
   constructor(private service: ServiceItemReceipt) {
-    this.dataSource = new MatTableDataSource<ItemReceipt>(this.cancelItemReceiptsList);
+    this.dataSource = new MatTableDataSource<ItemReceiptDTO>(this.cancelItemReceiptsList);
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class CancelItemReceiptViewComponent implements OnInit {
   private ngGetAll() {
     this.service.getAllItemReceipts().subscribe(itemCancellation => {
       this.cancelItemReceiptsList = itemCancellation.filter(isCancelled => isCancelled.storno)
-      this.dataSource = new MatTableDataSource<ItemReceipt>(this.cancelItemReceiptsList);
+      this.dataSource = new MatTableDataSource<ItemReceiptDTO>(this.cancelItemReceiptsList);
       this.dataSource.paginator = this.paginator;
     });
   }

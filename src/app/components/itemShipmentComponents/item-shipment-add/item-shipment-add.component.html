@@ -5,7 +5,8 @@
       <mat-label>Company</mat-label>
       <mat-select formControlName="shipmentCompany">
         <mat-option *ngFor="let shipmentCompany of shipmentCompaniesList" [value]="shipmentCompany">
-          {{shipmentCompany.izdatnicaFirme.oibFirme + '-' + shipmentCompany.izdatnicaFirme.nazivFirme}}
+          {{shipmentCompany.izdatnicaFirme.oibFirme + '-'
+        + shipmentCompany.izdatnicaFirme.nazivFirme}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -25,5 +26,6 @@
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="ngSaveItemShipment()">Save</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary"
+          (click)="ngSaveItemShipment()">{{actionButton}}</button>
 </div>

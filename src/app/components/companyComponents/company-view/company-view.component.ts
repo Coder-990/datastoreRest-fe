@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {CompanyAddComponent} from "../company-add/company-add.component";
 import {MatSort} from '@angular/material/sort';
+import {CompanyEditComponent} from "../company-edit/company-edit.component";
 
 const ID = 'ID';
 const IDENTITY_NUMBER = 'Identity number';
@@ -24,6 +25,8 @@ export class CompanyViewComponent implements OnInit {
   displayedColumns: string[] = [ID, IDENTITY_NUMBER, NAME, EDIT_DELETE];
   companiesList: CompanyDTO[] = [];
   dataSource: MatTableDataSource<CompanyDTO>;
+  buttonEdit: string = "Edit";
+  buttonDelete: string = "Delete";
 
   constructor(private service: ServiceCompany, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<CompanyDTO>(this.companiesList);
@@ -58,4 +61,13 @@ export class CompanyViewComponent implements OnInit {
     if (paginator) paginator.firstPage();
   }
 
+  ngEditCompany(row:any) {
+    const dialogRef = this.dialog.open(CompanyEditComponent, {
+      width: '20%',
+      data: row
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

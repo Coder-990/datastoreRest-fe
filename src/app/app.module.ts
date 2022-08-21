@@ -29,24 +29,29 @@ import {
 import {
   CancelItemReceiptViewComponent
 } from "./components/cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
-import { ArticleAddComponent } from './components/articleComponents/article-add/article-add.component';
+import {ArticleAddComponent} from './components/articleComponents/article-add/article-add.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import { ReceiptAddComponent } from './components/receiptComponents/receipt-add/receipt-add.component';
+import {ReceiptAddComponent} from './components/receiptComponents/receipt-add/receipt-add.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
-import { CompanyAddComponent } from './components/companyComponents/company-add/company-add.component';
-import { ShipmentAddComponent } from './components/shipmentComponents/shipment-add/shipment-add.component';
-import { ItemShipmentAddComponent } from './components/itemShipmentComponents/item-shipment-add/item-shipment-add.component';
-import { ItemReceiptAddComponent } from './components/itemReceiptComponents/item-receipt-add/item-receipt-add.component';
-import { CancelItemReceiptAddComponent } from './components/cancelItemReceiptComponents/cancel-item-receipt-add/cancel-item-receipt-add.component';
-import { CancelItemShipmentAddComponent } from './components/cancelItemShipmentComponents/cancel-item-shipment-add/cancel-item-shipment-add.component';
-import { CancelItemShipmentCancelComponent } from './components/cancelItemShipmentComponents/cancel-item-shipment-cancel/cancel-item-shipment-cancel.component';
-import { CancelItemReceiptCancelComponent } from './components/cancelItemReceiptComponents/cancel-item-receipt-cancel/cancel-item-receipt-cancel.component';
+import {CompanyAddComponent} from './components/companyComponents/company-add/company-add.component';
+import {ShipmentAddComponent} from './components/shipmentComponents/shipment-add/shipment-add.component';
+import {
+  ItemShipmentAddComponent
+} from './components/itemShipmentComponents/item-shipment-add/item-shipment-add.component';
+import {ItemReceiptAddComponent} from './components/itemReceiptComponents/item-receipt-add/item-receipt-add.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
+import {
+  ItemShipmentCancelComponent
+} from './components/itemShipmentComponents/item-shipment-cancel/item-shipment-cancel.component';
+import {
+  ItemReceiptCancelComponent
+} from './components/itemReceiptComponents/item-receipt-cancel/item-receipt-cancel.component';
+import { CompanyEditComponent } from './components/companyComponents/company-edit/company-edit.component';
 
 
 @NgModule({
@@ -68,10 +73,9 @@ import {DatePipe} from "@angular/common";
     ShipmentAddComponent,
     ItemShipmentAddComponent,
     ItemReceiptAddComponent,
-    CancelItemReceiptAddComponent,
-    CancelItemShipmentAddComponent,
-    CancelItemShipmentCancelComponent,
-    CancelItemReceiptCancelComponent,
+    ItemShipmentCancelComponent,
+    ItemReceiptCancelComponent,
+    CompanyEditComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 const ID = 'ID';
 const DATE = 'Date';
 const COMPANY = 'Company';
-const EDIT_DELETE = 'Edit/Delete';
+const ACTIONS = 'Action';
 
 @Component({
   selector: 'app-receipt-view',
@@ -19,7 +19,7 @@ const EDIT_DELETE = 'Edit/Delete';
 export class ReceiptViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  displayedColumns: string[] = [ID, DATE, COMPANY, EDIT_DELETE];
+  displayedColumns: string[] = [ID, DATE, COMPANY, ACTIONS];
   receiptsList: ReceiptDTO[] = [];
   dataSource: MatTableDataSource<ReceiptDTO>;
 

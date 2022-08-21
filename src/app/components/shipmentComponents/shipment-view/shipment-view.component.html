@@ -22,14 +22,15 @@
 
     <ng-container matColumnDef="Company">
       <th mat-header-cell *matHeaderCellDef> Company </th>
-      <td mat-cell *matCellDef="let shipment"> {{'[' + shipment.izdatnicaFirme.oibFirme + ']-' + shipment.izdatnicaFirme.nazivFirme}} </td>
+      <td mat-cell *matCellDef="let shipment"> {{
+        shipment.izdatnicaFirme.oibFirme + '-' +
+      shipment.izdatnicaFirme.nazivFirme}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="Edit/Delete">
-      <th mat-header-cell *matHeaderCellDef> Edit/Delete</th>
+    <ng-container matColumnDef="Acion">
+      <th mat-header-cell *matHeaderCellDef> Action</th>
       <td mat-cell *matCellDef>
-        <button mat-raised-button color="primary">Edit</button>
-        <button mat-raised-button color="primary">Delete</button>
+        <button mat-raised-button color="primary" (click)="ngDeleteShipment()">Delete</button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -17,8 +17,10 @@ export class ShipmentAddComponent implements OnInit {
   shipmentForm!: FormGroup
   shipmentDTO!: ShipmentDTO
 
-  constructor(private formBuilder: FormBuilder, private companyService: ServiceCompany,
-              private shipmentService: ServiceShipment, private datePipe: DatePipe) {
+  constructor(private formBuilder: FormBuilder,
+              private companyService: ServiceCompany,
+              private shipmentService: ServiceShipment,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class ShipmentAddComponent implements OnInit {
     }
   }
 
-  ngSaveShipment() {
+  ngSaveShipmentDTO() {
     this.shipmentDTO = this.ngBuildShipmentDTO()
     this.shipmentService.saveShipment(this.shipmentDTO).subscribe(receipt => {
       if (receipt instanceof ShipmentDTO) this.shipmentDTO = receipt

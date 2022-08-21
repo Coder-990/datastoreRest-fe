@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ItemShipment} from "../../../models/item-shipment";
+import {ItemShipmentDTO} from "../../../models/item-shipment";
 import {ServiceItemShipment} from "../../../services/service-item-shipment.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
@@ -19,11 +19,11 @@ export class CancelItemShipmentViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   displayedColumns: string[] = [ID, COMPANY, ARTICLE, AMOUNT, CANCELLATION_DATE];
-  cancelItemShipmentList: ItemShipment[] = [];
-  dataSource: MatTableDataSource<ItemShipment>;
+  cancelItemShipmentList: ItemShipmentDTO[] = [];
+  dataSource: MatTableDataSource<ItemShipmentDTO>;
 
   constructor(private service: ServiceItemShipment) {
-    this.dataSource = new MatTableDataSource<ItemShipment>(this.cancelItemShipmentList);
+    this.dataSource = new MatTableDataSource<ItemShipmentDTO>(this.cancelItemShipmentList);
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class CancelItemShipmentViewComponent implements OnInit {
   private ngGetAll() {
     this.service.getAllItemShipments().subscribe(itemCancellation => {
       this.cancelItemShipmentList = itemCancellation.filter(isCancelled => isCancelled.storno)
-      this.dataSource = new MatTableDataSource<ItemShipment>(this.cancelItemShipmentList);
+      this.dataSource = new MatTableDataSource<ItemShipmentDTO>(this.cancelItemShipmentList);
       this.dataSource.paginator = this.paginator;
     });
   }

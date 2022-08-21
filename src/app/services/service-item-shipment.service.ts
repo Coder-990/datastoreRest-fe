@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ItemShipment, ItemShipmentDTO} from "../models/item-shipment";
+import {ItemShipmentDTO} from "../models/item-shipment";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class ServiceItemShipment {
     return this.http.post(this.itemShipmentsUrl, itemShipment);
   }
 
-  improvedSaveCancelItemShipment(id: number | string, itemShipment: ItemShipment) {
+  cancelItemShipment(id: number | null, itemShipment: ItemShipmentDTO) {
     itemShipment.storno = true;
     itemShipment.datumStorno = new Date(Date.now());
     return this.http.put(this.itemShipmentsUrl + `/${id}`, itemShipment);

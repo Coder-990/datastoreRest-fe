@@ -11,16 +11,16 @@
 
     <ng-container matColumnDef="Company">
       <th mat-header-cell *matHeaderCellDef> Company</th>
-      <td mat-cell *matCellDef="let cancelItemReceipt"> {{'[ ' +
-      cancelItemReceipt.stavkaPrimkePrimka.primkaFirme.oibFirme + ' ] - ' +
+      <td mat-cell *matCellDef="let cancelItemReceipt"> {{
+      cancelItemReceipt.stavkaPrimkePrimka.primkaFirme.oibFirme + '-' +
       cancelItemReceipt.stavkaPrimkePrimka.primkaFirme.nazivFirme}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Article">
       <th mat-header-cell *matHeaderCellDef> Article</th>
-      <td mat-cell *matCellDef="let cancelItemReceipt"> {{'[ ' +
-      cancelItemReceipt.stavkaPrimkeRobe.nazivArtikla + ' ] - cijena: ' +
-      cancelItemReceipt.stavkaPrimkeRobe.cijena}} </td>
+      <td mat-cell *matCellDef="let cancelItemReceipt"> {{
+      cancelItemReceipt.stavkaPrimkeRobe.nazivArtikla + '-' +
+      cancelItemReceipt.stavkaPrimkeRobe.cijena+ ' €'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Amount">

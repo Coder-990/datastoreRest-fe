@@ -20,14 +20,15 @@ export class ReceiptAddComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private companyService: ServiceCompany,
               private receiptService: ServiceReceipt,
-              public datePipe: DatePipe) {}
+              public datePipe: DatePipe) {
+  }
 
   ngOnInit(): void {
-    this.ngGetAll();
+    this.ngGetAllCompanies();
     this.ngGenerateReceiptForm();
   }
 
-  ngGetAll() {
+  ngGetAllCompanies() {
     return this.companyService.getAllCompanies().subscribe(company => {
       this.companiesList = company;
     });
@@ -40,20 +41,30 @@ export class ReceiptAddComponent implements OnInit {
     })
   }
 
-  ngCreateReceipt() {
-    this.receiptDTO = {
-      id: null,
-      datum: this.datePipe.transform(new Date(this.receiptForm.get("date")?.value), 'yyyy-MM-dd'),
-      primkaFirme: {
-        id: this.receiptForm.get("company")?.value.id,
-        oibFirme: this.receiptForm.get("company")?.value.oibFirme,
-        nazivFirme: this.receiptForm.get("company")?.value.nazivFirme
-      }
+  ngTransformDateToString() {
+    return this.datePipe.transform(new Date(this.receiptForm.get("date")?.value), 'yyyy-MM-dd')
+  }
+
+  ngGetCompanyDTO() {
+    return {
+      id: this.receiptForm.get("company")?.value.id,
+      oibFirme: this.receiptForm.get("company")?.value.oibFirme,
+      nazivFirme: this.receiptForm.get("company")?.value.nazivFirme
     }
+  }
+
+  ngBuildReceiptDTO() {
+    return {
+      id: null,
+      datum: this.ngTransformDateToString(),
+      primkaFirme: this.ngGetCompanyDTO()
+    }
+  }
+
+  ngSaveReceiptDTO() {
+    this.receiptDTO = this.ngBuildReceiptDTO()
     this.receiptService.saveReceipt(this.receiptDTO).subscribe(receipt => {
-      if (receipt instanceof ReceiptDTO) {
-        this.receiptDTO = receipt
-      }
+      if (receipt instanceof ReceiptDTO) this.receiptDTO = receipt
       console.log("Save success ", this.receiptDTO);
     });
   }

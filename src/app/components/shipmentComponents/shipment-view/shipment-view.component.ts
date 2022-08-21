@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Shipment} from "../../../models/shipment";
+import {Shipment, ShipmentDTO} from "../../../models/shipment";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ServiceShipment} from "../../../services/service-shipment.service";
@@ -9,7 +9,7 @@ import {ShipmentAddComponent} from "../shipment-add/shipment-add.component";
 const ID = 'ID';
 const DATE = 'Date';
 const COMPANY = 'Company';
-const EDIT_DELETE = 'Edit/Delete';
+const ACTION = 'Acion';
 
 @Component({
   selector: 'app-shipment-view',
@@ -19,12 +19,12 @@ const EDIT_DELETE = 'Edit/Delete';
 export class ShipmentViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  displayedColumns: string[] = [ID, DATE, COMPANY, EDIT_DELETE];
-  shipmentsList: Shipment[] = [];
-  dataSource: MatTableDataSource<Shipment>;
+  displayedColumns: string[] = [ID, DATE, COMPANY, ACTION];
+  shipmentsList: ShipmentDTO[] = [];
+  dataSource: MatTableDataSource<ShipmentDTO>;
 
   constructor(private service: ServiceShipment, private dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<Shipment>(this.shipmentsList);
+    this.dataSource = new MatTableDataSource<ShipmentDTO>(this.shipmentsList);
   }
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class ShipmentViewComponent implements OnInit {
   private ngGetAll() {
     this.service.getAllShipments().subscribe(receipt => {
       this.shipmentsList = receipt;
-      this.dataSource = new MatTableDataSource<Shipment>(this.shipmentsList);
+      this.dataSource = new MatTableDataSource<ShipmentDTO>(this.shipmentsList);
       this.dataSource.paginator = this.paginator;
     })
   }
@@ -46,5 +46,9 @@ export class ShipmentViewComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  ngDeleteShipment() {
+
   }
 }
