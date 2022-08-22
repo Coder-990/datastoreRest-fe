@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CompanyDTO} from "../../../models/company";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ServiceCompany} from "../../../services/service-company.service";
 
 @Component({
@@ -16,7 +16,7 @@ export class CompanyEditComponent implements OnInit {
   actionButton: string = "Update";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
-              private service: ServiceCompany) {
+              private dialogRef: MatDialogRef<CompanyEditComponent>, private service: ServiceCompany) {
   }
 
   ngOnInit(): void {
@@ -41,7 +41,6 @@ export class CompanyEditComponent implements OnInit {
 
   ngUpdateCompanyDTO() {
     if (this.editData) {
-      console.log(this.editData)
       this.companyForm.controls['companyIdentityNumber'].setValue(this.editData.oibFirme)
       this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
     }
@@ -49,9 +48,15 @@ export class CompanyEditComponent implements OnInit {
 
   ngEditCompany() {
     this.ngUpdateCompanyDTO()
-    this.service.updateCompany(this.firmaDto.id, this.firmaDto).subscribe(company => {
-      this.firmaDto = <CompanyDTO>company
-      console.log("Update success ", this.firmaDto);
+    this.service.updateCompany(this.editData.id, this.companyForm.value).subscribe({
+      next: () => {
+        alert("Product updated successfully");
+        this.companyForm.reset();
+        this.dialogRef.close('update');
+      },
+      error: () => {
+        alert("Error while updating the record!");
+      }
     });
   }
 

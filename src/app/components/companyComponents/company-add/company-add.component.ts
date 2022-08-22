@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServiceCompany} from "../../../services/service-company.service";
 import {CompanyDTO} from "../../../models/company";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-company-add',
@@ -16,7 +16,7 @@ export class CompanyAddComponent implements OnInit {
   actionButton: string = "Save";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
-              private service: ServiceCompany) {
+              private dialogRef: MatDialogRef<CompanyAddComponent>, private service: ServiceCompany) {
   }
 
   ngOnInit(): void {
@@ -40,13 +40,17 @@ export class CompanyAddComponent implements OnInit {
 
   ngSaveCompany() {
     this.firmaDto = this.ngBuildCompanyDTO()
-    this.service.saveCompany(this.firmaDto).subscribe(company => {
-      this.firmaDto = <CompanyDTO>company
-      console.log("Save success ", this.firmaDto);
+    this.service.saveCompany(this.firmaDto).subscribe({
+      next: () => {
+        alert("Product saved successfully");
+        this.companyForm.reset();
+        this.dialogRef.close('save');
+      },
+      error: () => {
+        alert("Error while saving the record!");
+      }
     });
   }
-
-
 
 
 }

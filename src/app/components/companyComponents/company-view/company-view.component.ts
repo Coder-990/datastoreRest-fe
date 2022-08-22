@@ -50,6 +50,18 @@ export class CompanyViewComponent implements OnInit {
       width: '20%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'save') this.ngGetAll()
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  ngEditCompany(row: any) {
+    const dialogRef = this.dialog.open(CompanyEditComponent, {
+      width: '20%',
+      data: row
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'update') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -61,13 +73,5 @@ export class CompanyViewComponent implements OnInit {
     if (paginator) paginator.firstPage();
   }
 
-  ngEditCompany(row:any) {
-    const dialogRef = this.dialog.open(CompanyEditComponent, {
-      width: '20%',
-      data: row
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+
 }
