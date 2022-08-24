@@ -6,6 +6,7 @@ import {ServiceShipment} from "../../../services/service-shipment.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemShipmentDTO} from "../../../models/item-shipment";
 import {ServiceItemShipment} from "../../../services/service-item-shipment.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-item-shipment-add',
@@ -16,12 +17,12 @@ export class ItemShipmentAddComponent implements OnInit {
 
   shipmentCompaniesList: ShipmentDTO[] = [];
   articleList: ArticleDTO[] = [];
-  itemShipmentForm!: FormGroup
   itemShipmentDTO!: ItemShipmentDTO
+  itemShipmentForm!: FormGroup
   actionButton: string = "Save";
 
   constructor(private formBuilder: FormBuilder, private shipmentCompanyService: ServiceShipment,
-              private articleService: ServiceArticle, private itemShipmentService: ServiceItemShipment) {
+              private dialogRef: MatDialogRef<ItemShipmentAddComponent>, private articleService: ServiceArticle, private itemShipmentService: ServiceItemShipment) {
   }
 
   ngOnInit(): void {
@@ -82,9 +83,15 @@ export class ItemShipmentAddComponent implements OnInit {
 
   ngSaveItemShipment() {
     this.itemShipmentDTO = this.ngBuildItemShipmentDTO()
-    this.itemShipmentService.saveItemShipment(this.itemShipmentDTO).subscribe(itemShipmentDTO => {
-      this.itemShipmentDTO = <ItemShipmentDTO>itemShipmentDTO
-      console.log("Save success ", this.itemShipmentDTO);
+    this.itemShipmentService.saveItemShipment(this.itemShipmentDTO).subscribe({
+      next: () => {
+        alert("Item Shipment saved successfully");
+        this.itemShipmentForm.reset();
+        this.dialogRef.close('save');
+      },
+      error: () => {
+        alert("Error while saving the record!");
+      }
     });
   }
 

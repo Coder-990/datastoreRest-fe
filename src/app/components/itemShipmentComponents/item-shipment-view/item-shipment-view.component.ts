@@ -46,6 +46,7 @@ export class ItemShipmentViewComponent implements OnInit {
       width: '20%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'save') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -56,6 +57,7 @@ export class ItemShipmentViewComponent implements OnInit {
       data: row
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'cancel') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }

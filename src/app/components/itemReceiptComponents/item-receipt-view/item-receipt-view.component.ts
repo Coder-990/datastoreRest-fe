@@ -1,13 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ItemReceipt, ItemReceiptDTO} from "../../../models/item-receipt";
+import {ItemReceiptDTO} from "../../../models/item-receipt";
 import {ServiceItemReceipt} from "../../../services/service-item-receipt.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemReceiptAddComponent} from "../item-receipt-add/item-receipt-add.component";
-import {
-  CancelItemReceiptViewComponent
-} from "../../cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
 import {
   ItemShipmentCancelComponent
 } from "../../itemShipmentComponents/item-shipment-cancel/item-shipment-cancel.component";
@@ -51,15 +48,18 @@ export class ItemReceiptViewComponent implements OnInit {
       width: '20%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'save') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  ngCancelItemReceipt() {
+  ngCancelItemReceipt(row: any) {
     const dialogRef = this.dialog.open(ItemShipmentCancelComponent, {
-      width: '20%'
+      width: '20%',
+      data: row
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'cancel') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }

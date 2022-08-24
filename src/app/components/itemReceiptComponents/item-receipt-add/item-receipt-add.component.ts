@@ -6,6 +6,7 @@ import {ServiceReceipt} from "../../../services/service-receipt.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServiceItemReceipt} from "../../../services/service-item-receipt.service";
 import {ItemReceiptDTO} from "../../../models/item-receipt";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-item-receipt-add',
@@ -20,8 +21,9 @@ export class ItemReceiptAddComponent implements OnInit {
   itemReceiptDTO!: ItemReceiptDTO
   actionButton: string = "Save";
 
-  constructor(private formBuilder: FormBuilder,private receiptService: ServiceReceipt,
-              private articleService: ServiceArticle, private itemReceiptService: ServiceItemReceipt) { }
+  constructor(private formBuilder: FormBuilder, private receiptService: ServiceReceipt, private articleService: ServiceArticle,
+              private dialogRef: MatDialogRef<ItemReceiptAddComponent>, private itemReceiptService: ServiceItemReceipt) {
+  }
 
   ngOnInit(): void {
     this.ngGetAllCompaniesFromReceipt();
@@ -81,9 +83,15 @@ export class ItemReceiptAddComponent implements OnInit {
 
   ngSaveItemReceipt() {
     this.itemReceiptDTO = this.ngBuildItemReceiptDTO()
-    this.itemReceiptService.saveItemReceipt(this.itemReceiptDTO).subscribe(itemReceiptDTO => {
-      this.itemReceiptDTO = <ItemReceiptDTO>itemReceiptDTO
-      console.log("Save success ", this.itemReceiptDTO);
+    this.itemReceiptService.saveItemReceipt(this.itemReceiptDTO).subscribe({
+      next: () => {
+        alert("Article saved successfully");
+        this.itemReceiptForm.reset();
+        this.dialogRef.close('save');
+      },
+      error: () => {
+        alert("Error while saving the record!");
+      }
     });
   }
 }

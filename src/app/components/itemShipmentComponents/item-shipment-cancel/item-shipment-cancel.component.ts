@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemShipmentDTO} from "../../../models/item-shipment";
 import {ServiceItemShipment} from "../../../services/service-item-shipment.service";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {now} from "lodash";
 
 @Component({
@@ -17,7 +17,7 @@ export class ItemShipmentCancelComponent implements OnInit {
   actionButton: string = "Cancel";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
-              private itemShipmentService: ServiceItemShipment) {
+              private dialogRef: MatDialogRef<ItemShipmentCancelComponent>, private itemShipmentService: ServiceItemShipment) {
   }
 
   ngOnInit(): void {
@@ -46,9 +46,16 @@ export class ItemShipmentCancelComponent implements OnInit {
 
   ngCancelItemShipment() {
     this.cancelItemShipmentDTO = this.ngCancelItemShipmentDTO();
-    this.itemShipmentService.cancelItemShipment(this.cancelItemShipmentDTO.id, this.cancelItemShipmentDTO).subscribe(cancelItemShipmentDTO => {
-      this.cancelItemShipmentDTO = <ItemShipmentDTO>cancelItemShipmentDTO
-      console.log("Save success ", this.cancelItemShipmentDTO);
+    this.itemShipmentService.cancelItemShipment(this.cancelItemShipmentDTO.id,
+      this.cancelItemShipmentDTO).subscribe({
+      next: () => {
+        alert("Item Shipment canceled successfully");
+        this.cancelItemShipmentForm.reset();
+        this.dialogRef.close('cancel');
+      },
+      error: () => {
+        alert("Error while canceling the record!");
+      }
     });
   }
 }

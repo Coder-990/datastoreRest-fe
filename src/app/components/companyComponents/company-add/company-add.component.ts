@@ -42,7 +42,7 @@ export class CompanyAddComponent implements OnInit {
     this.firmaDto = this.ngBuildCompanyDTO()
     this.service.saveCompany(this.firmaDto).subscribe({
       next: () => {
-        alert("Product saved successfully");
+        alert("Company saved successfully");
         this.companyForm.reset();
         this.dialogRef.close('save');
       },

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ArticleDTO} from "../../../models/article";
 import {ServiceArticle} from "../../../services/service-article.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-article-add',
@@ -13,7 +14,8 @@ export class ArticleAddComponent implements OnInit {
   articleForm!: FormGroup;
   articleDTO!: ArticleDTO
 
-  constructor(private formBuilder: FormBuilder, private service: ServiceArticle) {
+  constructor(private formBuilder: FormBuilder, private service: ServiceArticle,
+              private dialogRef: MatDialogRef<ArticleAddComponent>) {
   }
 
   ngOnInit(): void {
@@ -43,9 +45,15 @@ export class ArticleAddComponent implements OnInit {
 
   ngSaveArticle() {
     this.articleDTO = this.ngBuildArticleDTO()
-    this.service.saveArticle(this.articleDTO).subscribe(article => {
-        this.articleDTO = <ArticleDTO>article
-      console.log("Save success ", this.articleDTO);
-    })
+    this.service.saveArticle(this.articleDTO).subscribe({
+      next: () => {
+        alert("Article saved successfully");
+        this.articleForm.reset();
+        this.dialogRef.close('save');
+      },
+      error: () => {
+        alert("Error while saving the record!");
+      }
+    });
   }
 }
