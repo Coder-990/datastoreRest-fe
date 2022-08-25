@@ -12,7 +12,7 @@ import {ServiceCompany} from "../../../services/service-company.service";
 export class CompanyEditComponent implements OnInit {
 
   companyForm!: FormGroup;
-  firmaDto!: CompanyDTO
+  companyDTO!: CompanyDTO;
   actionButton: string = "Update";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
@@ -21,6 +21,7 @@ export class CompanyEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngGenerateCompanyForm();
+    this.ngGetEditData()
   }
 
   ngGenerateCompanyForm() {
@@ -28,10 +29,14 @@ export class CompanyEditComponent implements OnInit {
       companyIdentityNumber: ['', Validators.required],
       companyName: ['', Validators.required]
     })
-    this.ngUpdateCompanyDTO()
   }
 
-  ngBuildCompanyDTO() {
+  ngGetEditData() {
+    this.companyForm.controls['companyIdentityNumber'].setValue(this.editData.oibFirme)
+    this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
+  }
+
+  ngBuildEditData() {
     return {
       id: null,
       oibFirme: this.companyForm.get("companyIdentityNumber")?.value,
@@ -39,16 +44,9 @@ export class CompanyEditComponent implements OnInit {
     }
   }
 
-  ngUpdateCompanyDTO() {
-    if (this.editData) {
-      this.companyForm.controls['companyIdentityNumber'].setValue(this.editData.oibFirme)
-      this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
-    }
-  }
-
-  ngEditCompany() {
-    this.ngUpdateCompanyDTO()
-    this.service.updateCompany(this.editData.id, this.companyForm.value).subscribe({
+  ngUpdateCompany() {
+    this.companyDTO = this.ngBuildEditData();
+    this.service.updateCompany(this.editData.id, this.companyDTO).subscribe({
       next: () => {
         alert("Product updated successfully");
         this.companyForm.reset();
@@ -59,5 +57,5 @@ export class CompanyEditComponent implements OnInit {
       }
     });
   }
-
 }
+

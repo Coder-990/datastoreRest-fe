@@ -51,7 +51,8 @@ import {
 import {
   ItemReceiptCancelComponent
 } from './components/itemReceiptComponents/item-receipt-cancel/item-receipt-cancel.component';
-import { CompanyEditComponent } from './components/companyComponents/company-edit/company-edit.component';
+import {CompanyEditComponent} from './components/companyComponents/company-edit/company-edit.component';
+import { CompanyDeleteComponent } from './components/companyComponents/company-delete/company-delete.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { CompanyEditComponent } from './components/companyComponents/company-edi
     ItemReceiptAddComponent,
     ItemShipmentCancelComponent,
     ItemReceiptCancelComponent,
-    CompanyEditComponent
+    CompanyEditComponent,
+    CompanyDeleteComponent,
   ],
   imports: [
     BrowserModule,
