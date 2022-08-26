@@ -6,6 +6,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {ArticleAddComponent} from "../article-add/article-add.component";
 import {MatSort} from "@angular/material/sort";
+import {CompanyEditComponent} from "../../companyComponents/company-edit/company-edit.component";
+import {ArticleEditComponent} from "../article-edit/article-edit.component";
 
 const ID = 'ID';
 const NAME = 'Name';
@@ -50,6 +52,17 @@ export class ArticleViewComponent implements OnInit {
       width: '20%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  ngEditArticle(row : any) {
+    const dialogRef = this.dialog.open(ArticleEditComponent, {
+      width: '20%',
+      data: row
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'update') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }

@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Edit Company</h1>
+<div mat-dialog-content>
+  <form [formGroup]="articleForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input formControlName="articleName" matInput placeholder="Name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input formControlName="articlePrice" matInput type="number" placeholder="0">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input formControlName="articleAmount" matInput type="number" placeholder="0">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Unit of measure</mat-label>
+      <input formControlName="articleUOM" matInput placeholder="UOM">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Describe</mat-label>
+      <input formControlName="articleDescribe" matInput placeholder="Describe">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary"
+          (click)="ngUpdateCompany()">{{actionButton}}</button>
+</div>

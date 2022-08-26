@@ -36,7 +36,7 @@ export class CompanyEditComponent implements OnInit {
     this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
   }
 
-  ngBuildEditData() {
+  ngBuildCompanyDTO() {
     return {
       id: null,
       oibFirme: this.companyForm.get("companyIdentityNumber")?.value,
@@ -45,7 +45,7 @@ export class CompanyEditComponent implements OnInit {
   }
 
   ngUpdateCompany() {
-    this.companyDTO = this.ngBuildEditData();
+    this.companyDTO = this.ngBuildCompanyDTO();
     this.service.updateCompany(this.editData.id, this.companyDTO).subscribe({
       next: () => {
         alert("Product updated successfully");

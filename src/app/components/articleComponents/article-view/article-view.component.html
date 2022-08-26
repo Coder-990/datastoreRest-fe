@@ -48,8 +48,8 @@
 
     <ng-container matColumnDef="Edit/Delete">
       <th mat-header-cell *matHeaderCellDef> Actions</th>
-      <td mat-cell *matCellDef>
-        <button mat-raised-button color="primary">Edit</button>
+      <td mat-cell *matCellDef=" let row">
+        <button mat-raised-button color="primary" (click)="ngEditArticle(row)">Edit</button>
         <button style="margin-left: 8px;" mat-raised-button color="primary">Delete</button>
       </td>
     </ng-container>
