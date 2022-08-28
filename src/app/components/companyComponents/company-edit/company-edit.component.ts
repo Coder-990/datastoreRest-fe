@@ -21,7 +21,7 @@ export class CompanyEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngGenerateCompanyForm();
-    this.ngGetEditData()
+    this.ngGetCompanyDTO()
   }
 
   ngGenerateCompanyForm() {
@@ -31,7 +31,7 @@ export class CompanyEditComponent implements OnInit {
     })
   }
 
-  ngGetEditData() {
+  ngGetCompanyDTO() {
     this.companyForm.controls['companyIdentityNumber'].setValue(this.editData.oibFirme)
     this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
   }
@@ -44,18 +44,19 @@ export class CompanyEditComponent implements OnInit {
     }
   }
 
-  ngUpdateCompany() {
+  ngUpdateCompanyDTO() {
     this.companyDTO = this.ngBuildCompanyDTO();
-    this.service.updateCompany(this.editData.id, this.companyDTO).subscribe({
-      next: () => {
-        alert("Product updated successfully");
-        this.companyForm.reset();
-        this.dialogRef.close('update');
-      },
-      error: () => {
-        alert("Error while updating the record!");
-      }
-    });
+    this.service.updateCompany(this.editData.id, this.companyDTO)
+      .subscribe({
+        next: () => {
+          alert("Company updated successfully");
+          this.companyForm.reset();
+          this.dialogRef.close('update');
+        },
+        error: () => {
+          alert("Error while updating the record!");
+        }
+      });
   }
 }
 

@@ -1,11 +1,9 @@
 <h1 mat-dialog-title>Cancel Item Receipt?</h1>
 <div mat-dialog-content>
-  <form [formGroup]="cancelItemReceiptForm">
     <div mat-dialog-actions [align]="'end'">
       <button mat-raised-button color="warn" mat-dialog-close>NO</button>
       <button
         mat-raised-button color="accent" (click)="ngCancelItemReceipt()">{{actionButton}}
       </button>
     </div>
-  </form>
 </div>

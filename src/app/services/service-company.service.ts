@@ -29,7 +29,7 @@ export class ServiceCompany {
     return this.http.put(this.companiesUrl + `/${id}`, company);
   }
 
-  deleteCompany(id: number | string) {
+  deleteCompany(id: number| null) {
     return this.http.delete(this.companiesUrl + `/${id}`);
   }
 }

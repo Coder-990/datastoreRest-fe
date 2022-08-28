@@ -54,6 +54,7 @@ import {
 import {CompanyEditComponent} from './components/companyComponents/company-edit/company-edit.component';
 import { CompanyDeleteComponent } from './components/companyComponents/company-delete/company-delete.component';
 import { ArticleEditComponent } from './components/articleComponents/article-edit/article-edit.component';
+import { ReceiptDeleteComponent } from './components/receiptComponents/receipt-delete/receipt-delete.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { ArticleEditComponent } from './components/articleComponents/article-edi
     CompanyEditComponent,
     CompanyDeleteComponent,
     ArticleEditComponent,
+    ReceiptDeleteComponent,
   ],
   imports: [
     BrowserModule,

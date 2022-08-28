@@ -21,7 +21,7 @@ export class ArticleEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngGenerateArticleForm();
-    this.ngGetEditData()
+    this.ngGetArticleDTO()
   }
 
   private ngGenerateArticleForm() {
@@ -34,9 +34,12 @@ export class ArticleEditComponent implements OnInit {
     })
   }
 
-  ngGetEditData() {
-    this.articleForm.controls['articleName'].setValue(this.editData.oibFirme)
-    this.articleForm.controls['articlePrice'].setValue(this.editData.nazivFirme)
+  ngGetArticleDTO() {
+    this.articleForm.controls['articleName'].setValue(this.editData.nazivArtikla)
+    this.articleForm.controls['articlePrice'].setValue(this.editData.cijena)
+    this.articleForm.controls['articleAmount'].setValue(this.editData.kolicina)
+    this.articleForm.controls['unitOfMeasure'].setValue(this.editData.jmj)
+    this.articleForm.controls['describe'].setValue(this.editData.opis)
   }
 
   ngBuildArticleDTO() {
@@ -50,12 +53,17 @@ export class ArticleEditComponent implements OnInit {
     }
   }
 
-  ngBuildEditData() {
-    return {
-      id: null,
-      oibFirme: this.articleForm.get("companyIdentityNumber")?.value,
-      nazivFirme: this.articleForm.get("companyName")?.value
-    }
+  ngUpdateArticleDTO() {
+    this.articleDTO = this.ngBuildArticleDTO();
+    this.service.updateArticle(this.editData.id, this.articleDTO).subscribe({
+      next:() =>{
+        alert("Article updated successfully");
+        this.articleForm.reset();
+        this.dialogRef.close('update');
+      },
+      error: () =>{
+        alert("Error while updating the record!");
+      }
+    })
   }
-
 }

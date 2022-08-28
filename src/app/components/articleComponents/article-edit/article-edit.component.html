@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Edit Company</h1>
+<h1 mat-dialog-title>Update Article</h1>
 <div mat-dialog-content>
   <form [formGroup]="articleForm">
     <mat-form-field appearance="outline">
@@ -15,16 +15,16 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Unit of measure</mat-label>
-      <input formControlName="articleUOM" matInput placeholder="UOM">
+      <input formControlName="unitOfMeasure" matInput placeholder="UOM">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Describe</mat-label>
-      <input formControlName="articleDescribe" matInput placeholder="Describe">
+      <input formControlName="describe" matInput placeholder="Describe">
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-raised-button color="warn" mat-dialog-close>Close</button>
   <button style="margin-left: 8px;" mat-raised-button color="primary"
-          (click)="ngUpdateCompany()">{{actionButton}}</button>
+          (click)="ngUpdateArticleDTO()">{{actionButton}}</button>
 </div>

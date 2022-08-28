@@ -5,9 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {ItemReceiptAddComponent} from "../item-receipt-add/item-receipt-add.component";
-import {
-  ItemShipmentCancelComponent
-} from "../../itemShipmentComponents/item-shipment-cancel/item-shipment-cancel.component";
+import {ItemReceiptCancelComponent} from "../item-receipt-cancel/item-receipt-cancel.component";
 
 const ID = 'ID';
 const COMPANY = 'Company';
@@ -54,7 +52,7 @@ export class ItemReceiptViewComponent implements OnInit {
   }
 
   ngCancelItemReceipt(row: any) {
-    const dialogRef = this.dialog.open(ItemShipmentCancelComponent, {
+    const dialogRef = this.dialog.open(ItemReceiptCancelComponent, {
       width: '20%',
       data: row
     });

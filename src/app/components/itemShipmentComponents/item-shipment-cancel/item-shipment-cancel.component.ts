@@ -14,7 +14,7 @@ export class ItemShipmentCancelComponent implements OnInit {
 
   cancelItemShipmentForm!: FormGroup;
   cancelItemShipmentDTO!: ItemShipmentDTO
-  actionButton: string = "Cancel";
+  actionButton: string = "YES";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
               private dialogRef: MatDialogRef<ItemShipmentCancelComponent>, private itemShipmentService: ServiceItemShipment) {
@@ -22,6 +22,7 @@ export class ItemShipmentCancelComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngGenerateCancelItemShipmentForm();
+    this.ngGetItemShipmentDTO();
   }
 
   private ngGenerateCancelItemShipmentForm() {
@@ -32,13 +33,18 @@ export class ItemShipmentCancelComponent implements OnInit {
     })
   }
 
+  ngGetItemShipmentDTO() {
+    this.cancelItemShipmentForm.controls['shipmentCompany'].setValue(this.editData.stavkaPrimkePrimka)
+    this.cancelItemShipmentForm.controls['shipmentArticle'].setValue(this.editData.stavkaPrimkeRobe)
+    this.cancelItemShipmentForm.controls['shipmentAmount'].setValue(this.editData.kolicina)
+  }
+
   ngCancelItemShipmentDTO() {
     return {
-      // id: this.cancelItemShipmentForm.controls[''].setValue(this.editData.id),
       id: null,
-      stavkaIzdatniceIzdatnica: this.editData.control.stavkaIzdatniceIzdatnica,
-      stavkaIzdatniceRobe: this.editData.control.stavkaIzdatniceRobe,
-      kolicina: this.editData.control.kolicina,
+      stavkaIzdatniceIzdatnica: this.cancelItemShipmentForm.get("shipmentCompany")?.value,
+      stavkaIzdatniceRobe: this.cancelItemShipmentForm.get("shipmentArticle")?.value,
+      kolicina: this.cancelItemShipmentForm.get("shipmentAmount")?.value,
       storno: true,
       datumStorno: new Date(now())
     }
@@ -46,16 +52,17 @@ export class ItemShipmentCancelComponent implements OnInit {
 
   ngCancelItemShipment() {
     this.cancelItemShipmentDTO = this.ngCancelItemShipmentDTO();
-    this.itemShipmentService.cancelItemShipment(this.cancelItemShipmentDTO.id,
-      this.cancelItemShipmentDTO).subscribe({
-      next: () => {
-        alert("Item Shipment canceled successfully");
-        this.cancelItemShipmentForm.reset();
-        this.dialogRef.close('cancel');
-      },
-      error: () => {
-        alert("Error while canceling the record!");
-      }
-    });
+    this.itemShipmentService.cancelItemShipment(this.editData.id, this.cancelItemShipmentDTO)
+      .subscribe({
+        next: () => {
+          alert("Item Shipment canceled successfully");
+          this.cancelItemShipmentForm.reset();
+          this.dialogRef.close('save');
+        },
+        error: () => {
+          alert("Error while canceling the record!");
+        }
+      });
   }
+
 }

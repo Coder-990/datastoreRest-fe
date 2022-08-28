@@ -17,7 +17,7 @@ export class ServiceItemShipment {
     return this.http.get<any[]>(this.itemShipmentsUrl);
   }
 
-  getItemShipmentById(id: number): Observable<any> {
+  getItemShipmentById(id: number | null): Observable<any> {
     return this.http.get<any>(this.itemShipmentsUrl + `/${id}`);
   }
 

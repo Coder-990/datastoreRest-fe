@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {CompanyAddComponent} from "../company-add/company-add.component";
 import {MatSort} from '@angular/material/sort';
 import {CompanyEditComponent} from "../company-edit/company-edit.component";
+import {CompanyDeleteComponent} from "../company-delete/company-delete.component";
 
 const ID = 'ID';
 const IDENTITY_NUMBER = 'Identity number';
@@ -57,11 +58,20 @@ export class CompanyViewComponent implements OnInit {
 
   ngEditCompany(row: any) {
     const dialogRef = this.dialog.open(CompanyEditComponent, {
-      width: '20%',
-      data: row
+      width: '20%', data: row
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'update') this.ngGetAll()
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  ngDeleteCompany(id: number) {
+    const dialogRef = this.dialog.open(CompanyDeleteComponent, {
+      width: '20%', data: id
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
