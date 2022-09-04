@@ -13,7 +13,8 @@ export class CompanyAddComponent implements OnInit {
 
   companyForm!: FormGroup;
   firmaDto!: CompanyDTO
-  actionButton: string = "Save";
+  buttonAdd: string = "Save";
+  buttonClose: string ="Close";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
               private dialogRef: MatDialogRef<CompanyAddComponent>, private service: ServiceCompany) {

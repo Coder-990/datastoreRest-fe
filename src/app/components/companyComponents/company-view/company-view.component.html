@@ -35,7 +35,7 @@
       <td mat-cell *matCellDef="let row">
         <button mat-raised-button color="primary" (click)="ngEditCompany(row)">{{buttonEdit}}</button>
         <button style="margin-left: 8px;" mat-raised-button color="primary"
-                (click)="ngDeleteCompany(row.id)">{{buttonDelete}}</button>
+                (click)="ngDeleteCompany(row)">{{buttonDelete}}</button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

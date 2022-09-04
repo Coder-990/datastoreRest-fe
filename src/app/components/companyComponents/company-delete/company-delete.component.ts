@@ -13,7 +13,8 @@ export class CompanyDeleteComponent implements OnInit {
 
   companyForm!: FormGroup;
   companyDTO!: CompanyDTO;
-  actionButton: string = "YES";
+  buttonConfirm: string = "YES";
+  buttonClose: string = "NO";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
               private dialogRef: MatDialogRef<CompanyDeleteComponent>, private service: ServiceCompany) {
@@ -21,7 +22,8 @@ export class CompanyDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngGenerateCompanyForm();
-    // this.ngGetCompanyDTO()
+    this.ngGetCompanyDTO()
+    this.companyDTO = this.ngBuildCompanyDTO();
   }
 
   ngGenerateCompanyForm() {
@@ -31,27 +33,27 @@ export class CompanyDeleteComponent implements OnInit {
     })
   }
 
-  //
-  // ngGetCompanyDTO() {
-  //   this.companyForm.controls['companyIdentityNumber'].setValue(this.editData.oibFirme)
-  //   this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
-  // }
-  //
-  // ngBuildCompanyDTO() {
-  //   return {
-  //     id: null,
-  //     oibFirme: this.companyForm.get("companyIdentityNumber")?.value,
-  //     nazivFirme: this.companyForm.get("companyName")?.value
-  //   }
-  // }
+
+  ngGetCompanyDTO() {
+    this.companyForm.controls['companyIdentityNumber'].setValue(this.editData.oibFirme)
+    this.companyForm.controls['companyName'].setValue(this.editData.nazivFirme)
+  }
+
+  ngBuildCompanyDTO() {
+    return {
+      id: null,
+      oibFirme: this.companyForm.get('companyIdentityNumber')?.value,
+      nazivFirme: this.companyForm.get('companyName')?.value
+    }
+  }
 
 
-  ngDeleteCompanyDTO(id: number | null) {
-    this.service.deleteCompany(id).subscribe({
+  ngDeleteCompanyDTO() {
+    this.service.deleteCompany(this.editData.id).subscribe({
       next: (_res) => {
         alert("Company deleted successfully");
         this.companyForm.reset();
-        this.dialogRef.close('update');
+        this.dialogRef.close('delete');
       },
       error: () => {
         alert("Error while deleting the record!");
