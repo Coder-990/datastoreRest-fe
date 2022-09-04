@@ -8,6 +8,8 @@ import {ArticleAddComponent} from "../article-add/article-add.component";
 import {MatSort} from "@angular/material/sort";
 import {CompanyEditComponent} from "../../companyComponents/company-edit/company-edit.component";
 import {ArticleEditComponent} from "../article-edit/article-edit.component";
+import {CompanyDeleteComponent} from "../../companyComponents/company-delete/company-delete.component";
+import {ArticleDeleteComponent} from "../article-delete/article-delete.component";
 
 const ID = 'ID';
 const NAME = 'Name';
@@ -29,6 +31,8 @@ export class ArticleViewComponent implements OnInit {
   displayedColumns: string[] = [ID, NAME, PRICE, AMOUNT, UOM, DESCRIBE, EDIT_DELETE];
   articlesList: ArticleDTO[] = [];
   dataSource: MatTableDataSource<ArticleDTO>;
+  buttonEdit: string = "Edit";
+  buttonDelete: string = "Delete";
 
   constructor(private service: ServiceArticle, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<ArticleDTO>(this.articlesList);
@@ -52,17 +56,27 @@ export class ArticleViewComponent implements OnInit {
       width: '20%'
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result === 'save') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  ngEditArticle(row : any) {
+  ngEditArticle(row: any) {
     const dialogRef = this.dialog.open(ArticleEditComponent, {
-      width: '20%',
-      data: row
+      width: '20%', data: row
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'update') this.ngGetAll()
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  ngDeleteArticle(id: number) {
+    const dialogRef = this.dialog.open(ArticleDeleteComponent, {
+      width: '20%', data: id
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'delete') this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
