@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Add Item Receipt</h1>
+<div mat-dialog-content>
+  <form [formGroup]="itemReceiptForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Receipt</mat-label>
+    <mat-select formControlName="receiptCompany">
+      <mat-option *ngFor="let receiptCompany of receiptCompanyList"  [value]="receiptCompany">
+        {{receiptCompany.primkaFirme.oibFirme + '-' +
+      receiptCompany.primkaFirme.nazivFirme}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Article</mat-label>
+    <mat-select formControlName="receiptArticle">
+      <mat-option *ngFor="let article of articleList" [value]="article">
+        {{article.nazivArtikla + '-' + article.cijena + ' €'}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Amount</mat-label>
+    <input formControlName="receiptAmount" matInput type="number" placeholder="0">
+  </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>{{buttonClose}}</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary"
+          (click)="ngSaveItemReceipt()">{{buttonSave}}</button>
+</div>

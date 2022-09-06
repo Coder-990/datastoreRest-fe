@@ -24,7 +24,6 @@
   </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
-  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-  <button style="margin-left: 8px;" mat-raised-button color="primary"
-          (click)="ngUpdateArticleDTO()">{{actionButton}}</button>
+  <button mat-raised-button color="warn" mat-dialog-close>{{buttonCancel}}</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="ngUpdateArticleDTO()">{{buttonUpdate}}</button>
 </div>

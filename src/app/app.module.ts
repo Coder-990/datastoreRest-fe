@@ -14,48 +14,49 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {PageNotFoundComponent} from './components/pageNotFound/page-not-found/page-not-found.component';
 import {MainMenuComponent} from './components/mainMenu/main-menu/main-menu.component';
 import {ArticleViewComponent} from './components/articleComponents/article-view/article-view.component';
-import {ReceiptViewComponent} from "./components/receiptComponents/receipt-view/receipt-view.component";
-import {ShipmentViewComponent} from './components/shipmentComponents/shipment-view/shipment-view.component';
+import {ReceiptViewComponent} from "./components/receipts/receiptComponents/receipt-view/receipt-view.component";
+import {ShipmentViewComponent} from './components/shipments/shipmentComponents/shipment-view/shipment-view.component';
 import {
   ItemReceiptViewComponent
-} from './components/itemReceiptComponents/item-receipt-view/item-receipt-view.component';
+} from './components/receipts/itemReceiptComponents/item-receipt-view/item-receipt-view.component';
 import {
   ItemShipmentViewComponent
-} from './components/itemShipmentComponents/item-shipment-view/item-shipment-view.component';
+} from './components/shipments/itemShipmentComponents/item-shipment-view/item-shipment-view.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {
   CancelItemShipmentViewComponent
-} from "./components/cancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
+} from "./components/shipments/cancelItemShipmentComponents/cancel-item-shipment-view/cancel-item-shipment-view.component";
 import {
   CancelItemReceiptViewComponent
-} from "./components/cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
+} from "./components/receipts/cancelItemReceiptComponents/cancel-item-receipt-view/cancel-item-receipt-view.component";
 import {ArticleAddComponent} from './components/articleComponents/article-add/article-add.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {ReceiptAddComponent} from './components/receiptComponents/receipt-add/receipt-add.component';
+import {ReceiptAddComponent} from './components/receipts/receiptComponents/receipt-add/receipt-add.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {CompanyAddComponent} from './components/companyComponents/company-add/company-add.component';
-import {ShipmentAddComponent} from './components/shipmentComponents/shipment-add/shipment-add.component';
+import {ShipmentAddComponent} from './components/shipments/shipmentComponents/shipment-add/shipment-add.component';
 import {
   ItemShipmentAddComponent
-} from './components/itemShipmentComponents/item-shipment-add/item-shipment-add.component';
-import {ItemReceiptAddComponent} from './components/itemReceiptComponents/item-receipt-add/item-receipt-add.component';
+} from './components/shipments/itemShipmentComponents/item-shipment-add/item-shipment-add.component';
+import {ItemReceiptAddComponent} from './components/receipts/itemReceiptComponents/item-receipt-add/item-receipt-add.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DatePipe} from "@angular/common";
 import {
   ItemShipmentCancelComponent
-} from './components/itemShipmentComponents/item-shipment-cancel/item-shipment-cancel.component';
+} from './components/shipments/itemShipmentComponents/item-shipment-cancel/item-shipment-cancel.component';
 import {
   ItemReceiptCancelComponent
-} from './components/itemReceiptComponents/item-receipt-cancel/item-receipt-cancel.component';
+} from './components/receipts/itemReceiptComponents/item-receipt-cancel/item-receipt-cancel.component';
 import {CompanyEditComponent} from './components/companyComponents/company-edit/company-edit.component';
 import { CompanyDeleteComponent } from './components/companyComponents/company-delete/company-delete.component';
 import { ArticleEditComponent } from './components/articleComponents/article-edit/article-edit.component';
-import { ReceiptDeleteComponent } from './components/receiptComponents/receipt-delete/receipt-delete.component';
+import { ReceiptDeleteComponent } from './components/receipts/receiptComponents/receipt-delete/receipt-delete.component';
 import { ArticleDeleteComponent } from './components/articleComponents/article-delete/article-delete.component';
+import { ShipmentDeleteComponent } from './components/shipments/shipmentComponents/shipment-delete/shipment-delete.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { ArticleDeleteComponent } from './components/articleComponents/article-d
     ArticleEditComponent,
     ReceiptDeleteComponent,
     ArticleDeleteComponent,
+    ShipmentDeleteComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,8 @@ export class CompanyEditComponent implements OnInit {
 
   companyForm!: FormGroup;
   companyDTO!: CompanyDTO;
-  actionButton: string = "Update";
+  buttonUpdate: string = "Update";
+  buttonClose: string = "Close";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
               private dialogRef: MatDialogRef<CompanyEditComponent>, private service: ServiceCompany) {
@@ -46,8 +47,7 @@ export class CompanyEditComponent implements OnInit {
 
   ngUpdateCompanyDTO() {
     this.companyDTO = this.ngBuildCompanyDTO();
-    this.service.updateCompany(this.editData.id, this.companyDTO)
-      .subscribe({
+    this.service.updateCompany(this.editData.id, this.companyDTO).subscribe({
         next: () => {
           alert("Company updated successfully");
           this.companyForm.reset();

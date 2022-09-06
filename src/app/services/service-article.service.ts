@@ -25,11 +25,11 @@ export class ServiceArticle {
     return this.http.post(this.articlesUrl, article);
   }
 
-  updateArticle(id: number | string, article: ArticleDTO) {
+  updateArticle(id: number, article: ArticleDTO) {
     return this.http.put(this.articlesUrl + `/${id}`, article);
   }
 
-  deleteArticle(id: number | string) {
+  deleteArticle(id: number) {
     return this.http.delete(this.articlesUrl + `/${id}`);
   }
 }

@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Add Item Shipment</h1>
+<div mat-dialog-content>
+  <form [formGroup]="itemShipmentForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Company</mat-label>
+      <mat-select formControlName="shipmentCompany">
+        <mat-option *ngFor="let shipmentCompany of shipmentCompaniesList" [value]="shipmentCompany">
+          {{shipmentCompany.izdatnicaFirme.oibFirme + '-'
+        + shipmentCompany.izdatnicaFirme.nazivFirme}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Article</mat-label>
+      <mat-select formControlName="shipmentArticle">
+        <mat-option *ngFor="let article of articleList" [value]="article">
+          {{article.nazivArtikla + '-' + article.cijena + ' €'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input formControlName="shipmentAmount" matInput type="number" placeholder="0">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>{{buttonClose}}</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary"
+          (click)="ngSaveItemShipment()">{{buttonSave}}</button>
+</div>

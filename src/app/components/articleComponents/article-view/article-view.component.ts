@@ -6,9 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {ArticleAddComponent} from "../article-add/article-add.component";
 import {MatSort} from "@angular/material/sort";
-import {CompanyEditComponent} from "../../companyComponents/company-edit/company-edit.component";
 import {ArticleEditComponent} from "../article-edit/article-edit.component";
-import {CompanyDeleteComponent} from "../../companyComponents/company-delete/company-delete.component";
 import {ArticleDeleteComponent} from "../article-delete/article-delete.component";
 
 const ID = 'ID';
@@ -17,7 +15,7 @@ const PRICE = 'Price';
 const AMOUNT = 'Amount';
 const UOM = 'Uom';
 const DESCRIBE = 'Describe';
-const EDIT_DELETE = 'Edit/Delete';
+const ACTIONS = 'Actions';
 
 @Component({
   selector: 'app-article-view',
@@ -28,11 +26,16 @@ export class ArticleViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   @ViewChild(MatSort) sort: MatSort | null = null;
 
-  displayedColumns: string[] = [ID, NAME, PRICE, AMOUNT, UOM, DESCRIBE, EDIT_DELETE];
+  displayedColumns: string[] = [ID, NAME, PRICE, AMOUNT, UOM, DESCRIBE, ACTIONS];
   articlesList: ArticleDTO[] = [];
   dataSource: MatTableDataSource<ArticleDTO>;
   buttonEdit: string = "Edit";
   buttonDelete: string = "Delete";
+  resultSave: string = 'save';
+  resultUpdate: string = 'update';
+  resultDelete: string = 'delete';
+  noMatch: string = "No data matching the filter";
+  private dialogRef: any;
 
   constructor(private service: ServiceArticle, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<ArticleDTO>(this.articlesList);
@@ -51,32 +54,27 @@ export class ArticleViewComponent implements OnInit {
     });
   }
 
-  ngAddNewArticle() {
-    const dialogRef = this.dialog.open(ArticleAddComponent, {
-      width: '20%'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'save') this.ngGetAll()
-      console.log(`Dialog result: ${result}`);
-    });
+  ngAddArticle() {
+    this.dialogRef = this.dialog
+      .open(ArticleAddComponent, {width: '20%'});
+    this.ngDialogResultAfterClose(this.resultSave);
   }
 
-  ngEditArticle(row: any) {
-    const dialogRef = this.dialog.open(ArticleEditComponent, {
-      width: '20%', data: row
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'update') this.ngGetAll()
-      console.log(`Dialog result: ${result}`);
-    });
+  ngUpdateArticle(id: number) {
+    this.dialogRef = this.dialog
+      .open(ArticleEditComponent, {width: '20%', data: id});
+    this.ngDialogResultAfterClose(this.resultUpdate);
   }
 
   ngDeleteArticle(id: number) {
-    const dialogRef = this.dialog.open(ArticleDeleteComponent, {
-      width: '20%', data: id
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'delete') this.ngGetAll()
+    this.dialogRef = this.dialog
+      .open(ArticleDeleteComponent, {width: '20%', data: id});
+    this.ngDialogResultAfterClose(this.resultDelete);
+  }
+
+  ngDialogResultAfterClose(action: string) {
+    this.dialogRef.afterClosed().subscribe((result: string) => {
+      if (result === action) this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }

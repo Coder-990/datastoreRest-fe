@@ -13,7 +13,8 @@ export class ArticleEditComponent implements OnInit {
 
   articleForm!: FormGroup;
   articleDTO!: ArticleDTO;
-  actionButton: string = "Update";
+  buttonUpdate: string = "Update";
+  buttonCancel: string = "Close";
 
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
               private dialogRef: MatDialogRef<ArticleEditComponent>, private service: ServiceArticle) {

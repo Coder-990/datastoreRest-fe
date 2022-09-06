@@ -21,8 +21,8 @@ export class ServiceReceipt {
     return this.http.get<any>(this.receiptsUrl + `/${id}`);
   }
 
-  saveReceipt(receipt: ReceiptDTO) {
-    return this.http.post(this.receiptsUrl, receipt);
+  saveReceipt(receiptDTO: ReceiptDTO) {
+    return this.http.post(this.receiptsUrl, receiptDTO);
   }
 
   deleteReceipt(id: number | string) {

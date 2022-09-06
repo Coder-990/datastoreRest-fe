@@ -26,7 +26,7 @@ export class ServiceItemReceipt {
     return this.http.post(this.itemReceiptUrl, itemReceipt);
   }
 
-  cancelItemReceipt(id: number | null, itemReceipt: ItemReceiptDTO) {
+  cancelItemReceipt(id: number, itemReceipt: ItemReceiptDTO) {
     itemReceipt.storno = true;
     itemReceipt.datumStorno = new Date(Date.now());
     return this.http.put(this.itemReceiptUrl + `/${id}`, itemReceipt);

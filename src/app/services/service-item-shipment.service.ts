@@ -13,11 +13,11 @@ export class ServiceItemShipment {
   constructor(private http: HttpClient) {
   }
 
-  getAllItemShipments(): Observable<any[]> {
-    return this.http.get<any[]>(this.itemShipmentsUrl);
+  getAllItemShipments(): Observable<ItemShipmentDTO[]> {
+    return this.http.get<ItemShipmentDTO[]>(this.itemShipmentsUrl);
   }
 
-  getItemShipmentById(id: number | null): Observable<any> {
+  getItemShipmentById(id: number): Observable<any> {
     return this.http.get<any>(this.itemShipmentsUrl + `/${id}`);
   }
 
@@ -25,7 +25,7 @@ export class ServiceItemShipment {
     return this.http.post(this.itemShipmentsUrl, itemShipment);
   }
 
-  cancelItemShipment(id: number | null, itemShipment: ItemShipmentDTO) {
+  cancelItemShipment(id: number, itemShipment: ItemShipmentDTO) {
     itemShipment.storno = true;
     itemShipment.datumStorno = new Date(Date.now());
     return this.http.put(this.itemShipmentsUrl + `/${id}`, itemShipment);

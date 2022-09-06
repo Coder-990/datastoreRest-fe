@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ServiceCompany} from "../../../services/service-company.service";
 import {CompanyDTO} from "../../../models/company";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-company-add',
@@ -12,12 +12,12 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 export class CompanyAddComponent implements OnInit {
 
   companyForm!: FormGroup;
-  firmaDto!: CompanyDTO
+  companyDTO!: CompanyDTO
   buttonAdd: string = "Save";
   buttonClose: string = "Close";
 
-  constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
-              private dialogRef: MatDialogRef<CompanyAddComponent>, private service: ServiceCompany) {
+  constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<CompanyAddComponent>,
+              private companyService: ServiceCompany) {
   }
 
   ngOnInit(): void {
@@ -40,8 +40,8 @@ export class CompanyAddComponent implements OnInit {
   }
 
   ngSaveCompany() {
-    this.firmaDto = this.ngBuildCompanyDTO()
-    this.service.saveCompany(this.firmaDto).subscribe({
+    this.companyDTO = this.ngBuildCompanyDTO()
+    this.companyService.saveCompany(this.companyDTO).subscribe({
       next: () => {
         alert("Company saved successfully");
         this.companyForm.reset();

@@ -13,6 +13,8 @@ export class ArticleAddComponent implements OnInit {
 
   articleForm!: FormGroup;
   articleDTO!: ArticleDTO
+  buttonClose: string = "Close";
+  buttonSave: string = "Save";
 
   constructor(private formBuilder: FormBuilder, private service: ServiceArticle,
               private dialogRef: MatDialogRef<ArticleAddComponent>) {

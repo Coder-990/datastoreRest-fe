@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ArticleDTO} from "../../../models/article";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ServiceArticle} from "../../../services/service-article.service";
 
@@ -12,7 +11,6 @@ import {ServiceArticle} from "../../../services/service-article.service";
 export class ArticleDeleteComponent implements OnInit {
 
   articleForm!: FormGroup;
-  articleDTO!: ArticleDTO;
   buttonConfirm: string = "YES";
   buttonClose: string = "NO";
 
@@ -22,8 +20,6 @@ export class ArticleDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngGenerateArticleForm();
-    this.ngGetArticleDTO()
-    this.articleDTO = this.ngBuildArticleDTO();
   }
 
   private ngGenerateArticleForm() {
@@ -36,28 +32,9 @@ export class ArticleDeleteComponent implements OnInit {
     })
   }
 
-  ngGetArticleDTO() {
-    this.articleForm.controls['articleName'].setValue(this.editData.nazivArtikla)
-    this.articleForm.controls['articlePrice'].setValue(this.editData.cijena)
-    this.articleForm.controls['articleAmount'].setValue(this.editData.kolicina)
-    this.articleForm.controls['unitOfMeasure'].setValue(this.editData.jmj)
-    this.articleForm.controls['describe'].setValue(this.editData.opis)
-  }
-
-  ngBuildArticleDTO() {
-    return {
-      id: null,
-      nazivArtikla: this.articleForm.get("articleName")?.value,
-      cijena: this.articleForm.get("articlePrice")?.value,
-      kolicina: this.articleForm.get("articleAmount")?.value,
-      jmj: this.articleForm.get("unitOfMeasure")?.value,
-      opis: this.articleForm.get("describe")?.value
-    }
-  }
-
   ngDeleteArticleDTO() {
     this.service.deleteArticle(this.editData.id).subscribe({
-      next: (_res) => {
+      next: () => {
         alert("Article deleted successfully");
         this.articleForm.reset();
         this.dialogRef.close('delete');

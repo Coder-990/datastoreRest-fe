@@ -12,7 +12,7 @@ import {CompanyDeleteComponent} from "../company-delete/company-delete.component
 const ID = 'ID';
 const IDENTITY_NUMBER = 'Identity number';
 const NAME = 'Name';
-const EDIT_DELETE = 'Edit/Delete';
+const ACTIONS = 'Actions';
 
 @Component({
   selector: 'app-company-view',
@@ -23,11 +23,16 @@ export class CompanyViewComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
   @ViewChild(MatSort) sort: MatSort | null = null;
 
-  displayedColumns: string[] = [ID, IDENTITY_NUMBER, NAME, EDIT_DELETE];
+  displayedColumns: string[] = [ID, IDENTITY_NUMBER, NAME, ACTIONS];
   companiesList: CompanyDTO[] = [];
   dataSource: MatTableDataSource<CompanyDTO>;
   buttonEdit: string = "Edit";
   buttonDelete: string = "Delete";
+  resultSave: string = 'save';
+  resultUpdate: string = 'update';
+  resultDelete: string = 'delete';
+  private dialogRef: any;
+  noMatch: string = "No data matching the filter";
 
   constructor(private service: ServiceCompany, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<CompanyDTO>(this.companiesList);
@@ -38,40 +43,35 @@ export class CompanyViewComponent implements OnInit {
   }
 
   ngGetAll() {
-    this.service.getAllCompanies().subscribe(company => {
-      this.companiesList = company;
+    this.service.getAllCompanies().subscribe(companies => {
+      this.companiesList = companies;
       this.dataSource = new MatTableDataSource<CompanyDTO>(this.companiesList);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
-  addNewCompany() {
-    const dialogRef = this.dialog.open(CompanyAddComponent, {
-      width: '20%'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'save') this.ngGetAll()
-      console.log(`Dialog result: ${result}`);
-    });
+  ngAddCompany() {
+    this.dialogRef = this.dialog
+      .open(CompanyAddComponent, {width: '20%'});
+    this.ngDialogResultAfterClose(this.resultSave);
   }
 
   ngEditCompany(row: any) {
-    const dialogRef = this.dialog.open(CompanyEditComponent, {
-      width: '20%', data: row
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'update') this.ngGetAll()
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialogRef = this.dialog
+      .open(CompanyEditComponent, {width: '20%', data: row});
+    this.ngDialogResultAfterClose(this.resultUpdate);
   }
 
   ngDeleteCompany(id: number) {
-    const dialogRef = this.dialog.open(CompanyDeleteComponent, {
-      width: '20%', data: id
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'delete') this.ngGetAll()
+    this.dialogRef = this.dialog
+      .open(CompanyDeleteComponent, {width: '20%', data: id});
+    this.ngDialogResultAfterClose(this.resultDelete);
+  }
+
+  ngDialogResultAfterClose(action: string) {
+    this.dialogRef.afterClosed().subscribe((result: string) => {
+      if (result === action) this.ngGetAll()
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -82,6 +82,5 @@ export class CompanyViewComponent implements OnInit {
     let paginator = this.dataSource.paginator;
     if (paginator) paginator.firstPage();
   }
-
 
 }
