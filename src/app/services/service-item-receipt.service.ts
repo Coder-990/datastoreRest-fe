@@ -17,7 +17,6 @@ export class ServiceItemReceipt {
     return this.http.get<ItemReceiptDTO[]>(this.itemReceiptUrl);
   }
 
-//get by company identity number
   getItemReceiptById(id: number): Observable<any> {
     return this.http.get<any>(this.itemReceiptUrl + `/${id}`);
   }

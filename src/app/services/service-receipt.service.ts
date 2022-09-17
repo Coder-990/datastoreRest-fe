@@ -14,9 +14,9 @@ export class ServiceReceipt {
   }
 
   getAllReceipts(): Observable<ReceiptDTO[]> {
-    return this.http.get<any[]>(this.receiptsUrl);
+    return this.http.get<ReceiptDTO[]>(this.receiptsUrl);
   }
-//get by company identity number
+
   getReceiptById(id: string): Observable<any> {
     return this.http.get<any>(this.receiptsUrl + `/${id}`);
   }

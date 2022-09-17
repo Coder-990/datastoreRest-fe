@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ShipmentDTO} from "../models/shipment";
@@ -14,9 +14,9 @@ export class ServiceShipment {
   }
 
   getAllShipments(): Observable<ShipmentDTO[]> {
-    return this.http.get<any[]>(this.shipmentsUrl);
+    return this.http.get<ShipmentDTO[]>(this.shipmentsUrl);
   }
-//get by company identity number
+
   getShipmentById(id: string): Observable<any> {
     return this.http.get<any>(this.shipmentsUrl + `/${id}`);
   }

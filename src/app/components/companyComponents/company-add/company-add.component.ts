@@ -52,5 +52,4 @@ export class CompanyAddComponent implements OnInit {
       }
     });
   }
-
 }

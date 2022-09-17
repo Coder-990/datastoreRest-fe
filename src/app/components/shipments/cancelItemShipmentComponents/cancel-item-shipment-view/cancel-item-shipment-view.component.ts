@@ -30,7 +30,7 @@ export class CancelItemShipmentViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.ngGetAll();
+    this.ngGetAll();
   }
 
   private ngGetAll() {

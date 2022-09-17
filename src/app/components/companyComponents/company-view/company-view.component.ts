@@ -82,5 +82,4 @@ export class CompanyViewComponent implements OnInit {
     let paginator = this.dataSource.paginator;
     if (paginator) paginator.firstPage();
   }
-
 }

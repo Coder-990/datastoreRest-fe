@@ -17,15 +17,13 @@ export class ItemShipmentCancelComponent implements OnInit {
   buttonConfirm: string = "YES";
   buttonDecline: string = "NO";
 
-  constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
-              private dialogRef: MatDialogRef<ItemShipmentCancelComponent>, private itemShipmentService: ServiceItemShipment) {
+  constructor(private itemShipmentService: ServiceItemShipment, @Inject(MAT_DIALOG_DATA) public editData: any,
+              private dialogRef: MatDialogRef<ItemShipmentCancelComponent>, private formBuilder: FormBuilder ) {
   }
-
   ngOnInit(): void {
     this.ngGenerateCancelItemShipmentForm();
     this.ngGetItemShipmentDTO();
   }
-
   private ngGenerateCancelItemShipmentForm() {
     this.cancelItemShipmentForm = this.formBuilder.group({
       shipmentCompany: ['', Validators.required],
@@ -33,14 +31,11 @@ export class ItemShipmentCancelComponent implements OnInit {
       shipmentAmount: ['', Validators.required]
     })
   }
-
   ngGetItemShipmentDTO() {
     this.cancelItemShipmentForm.controls['shipmentCompany'].setValue(this.editData.stavkaIzdatniceIzdatnica)
     this.cancelItemShipmentForm.controls['shipmentArticle'].setValue(this.editData.stavkaIzdatniceRobe)
     this.cancelItemShipmentForm.controls['shipmentAmount'].setValue(this.editData.kolicina)
   }
-
-
   ngBuildCancelItemShipmentDTO() {
     return {
       id: null,
@@ -51,7 +46,6 @@ export class ItemShipmentCancelComponent implements OnInit {
       datumStorno: new Date(now())
     }
   }
-
   ngCancelItemShipment() {
     this.cancelItemShipmentDTO = this.ngBuildCancelItemShipmentDTO();
     this.itemShipmentService.cancelItemShipment(this.editData.id, this.cancelItemShipmentDTO).subscribe({
@@ -65,5 +59,4 @@ export class ItemShipmentCancelComponent implements OnInit {
         }
       });
   }
-
 }

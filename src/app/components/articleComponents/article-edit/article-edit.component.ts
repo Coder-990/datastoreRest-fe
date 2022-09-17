@@ -57,12 +57,12 @@ export class ArticleEditComponent implements OnInit {
   ngUpdateArticleDTO() {
     this.articleDTO = this.ngBuildArticleDTO();
     this.service.updateArticle(this.editData.id, this.articleDTO).subscribe({
-      next:() =>{
+      next: () => {
         alert("Article updated successfully");
         this.articleForm.reset();
         this.dialogRef.close('update');
       },
-      error: () =>{
+      error: () => {
         alert("Error while updating the record!");
       }
     })

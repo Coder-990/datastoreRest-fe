@@ -48,15 +48,15 @@ export class CompanyEditComponent implements OnInit {
   ngUpdateCompanyDTO() {
     this.companyDTO = this.ngBuildCompanyDTO();
     this.service.updateCompany(this.editData.id, this.companyDTO).subscribe({
-        next: () => {
-          alert("Company updated successfully");
-          this.companyForm.reset();
-          this.dialogRef.close('update');
-        },
-        error: () => {
-          alert("Error while updating the record!");
-        }
-      });
+      next: () => {
+        alert("Company updated successfully");
+        this.companyForm.reset();
+        this.dialogRef.close('update');
+      },
+      error: () => {
+        alert("Error while updating the record!");
+      }
+    });
   }
 }
 

@@ -17,18 +17,15 @@ export class CompanyDeleteComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public editData: any,
               private dialogRef: MatDialogRef<CompanyDeleteComponent>, private service: ServiceCompany) {
   }
-
   ngOnInit(): void {
     this.ngGenerateCompanyForm();
   }
-
   ngGenerateCompanyForm() {
     this.companyForm = this.formBuilder.group({
       companyIdentityNumber: ['', Validators.required],
       companyName: ['', Validators.required]
     })
   }
-
   ngDeleteCompanyDTO() {
     this.service.deleteCompany(this.editData.id).subscribe({
       next: () => {

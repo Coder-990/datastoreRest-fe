@@ -85,7 +85,7 @@ import { ShipmentDeleteComponent } from './components/shipments/shipmentComponen
     ArticleEditComponent,
     ReceiptDeleteComponent,
     ArticleDeleteComponent,
-    ShipmentDeleteComponent,
+    ShipmentDeleteComponent
   ],
   imports: [
     BrowserModule,
